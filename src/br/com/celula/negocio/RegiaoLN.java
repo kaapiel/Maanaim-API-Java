@@ -50,7 +50,7 @@ public class RegiaoLN implements Serializable {
 		}				
 		for(SubRegiao r:x.getSubregioes()){
 			if(r.getCelulas().size()!=0){
-				msg="nao excluido, pois existem c�lulas vinculadas a esta regi�o.";
+				msg="nao excluido, pois existem celulas vinculadas a esta regi�o.";
 				return msg;					
 			}
 		}

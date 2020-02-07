@@ -49,7 +49,7 @@ public class PostAgReuniao {
 		
 		ra = gs.fromJson(formReuniao, AgendamentoAndroid.class);
 		
-		// retorna uma resposta HTTP 200 em caso de sucesso com o IDREUNIAO da reunião criada
+		// retorna uma resposta HTTP 200 em caso de sucesso com o IDREUNIAO da reuniao criada
 	    return Response.status(200).entity(grava().toString()).build();
 			
     }

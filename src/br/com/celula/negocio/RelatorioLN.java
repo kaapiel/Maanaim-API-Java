@@ -129,7 +129,6 @@ public class RelatorioLN implements Serializable{
 		   
 	    File reportFile = new File(ec.getRealPath("/sistema/relatorio/" +nomeRelatorio));
 	    
-	    // para resolver o problema da moeda
 	    param.put("REPORT_LOCALE", new Locale("pt", "BR"));
 	    param.put("logo", ec.getRealPath("/sistema/img/logo.png"));
 	    
@@ -173,11 +172,11 @@ public class RelatorioLN implements Serializable{
 	    String percfreq="% de frequencia selecionado: de " + ipercentual*100 + " a " + fpercentual*100;
 	    String totaldemembros = "Quantidade total de membros: " + totaldememb;
 	    if(datainicio!=null&datafim!=null){
-	    	periodo = "Per�odo selecionado das reuni�es: " 
+	    	periodo = "Per�odo selecionado das reunioes: " 
 	    			+ ValidarData.dataParaString(datainicio) + 
 	    			" e " + ValidarData.dataParaString(datafim);
 	    }else{
-	    	periodo ="Per�odo selecionado das reuni�es: Todas Reuni�es" ;
+	    	periodo ="Periodo selecionado das reunioes: Todas Reunioes" ;
 	    }
 	    
 	    // para resolver o problema da moeda
@@ -247,11 +246,11 @@ public class RelatorioLN implements Serializable{
 		HashMap param = new HashMap();
 	    String periodo="";
 	    if(datainicio!=null&datafim!=null){
-	    	periodo = "Per�odo selecionado das reuni�es: " 
+	    	periodo = "Periodo selecionado das reunioes: " 
 	    			+ ValidarData.dataParaString(datainicio) + 
 	    			" e " + ValidarData.dataParaString(datafim);
 	    }else{
-	    	periodo ="Per�odo selecionado das reuni�es: Todas Reuni�es" ;
+	    	periodo ="Per�odo selecionado das reunioes: Todas Reunioes" ;
 	    }
 	    
 	    // para resolver o problema da moeda

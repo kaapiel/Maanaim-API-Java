@@ -92,15 +92,15 @@ public class ReuniaoMB implements Serializable{
 	private boolean validaCampos() {
 		boolean b = true;
 		if(celula.getIdcelula()==null){
-			erros.add("Selecione um célula!");
+			erros.add("Selecione um celula!");
 			b= false;
 		}
 		if(statusselecionado.getIdestado()==null){
-			erros.add("Selecione um estado da célula!");
+			erros.add("Selecione um estado da celula!");
 			b= false;		
 		} 
 		if(reuniao.getIdreuniao()==null){
-			erros.add("Selecione uma reunião!");
+			erros.add("Selecione uma reuniao!");
 			b= false;		
 		} 		
 		return b;

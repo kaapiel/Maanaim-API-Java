@@ -74,7 +74,7 @@ public class ReuniaoMembroLN implements Serializable {
 
 	public String gravar(Reuniao reu, List<Membro> ausentes, List<ReuniaoMembro> participantes) {
 
-		//a reuni�o e definida atraves do metodo carregarCamposParaGravar(); e depois pelo m�todo reuniaoLN.adicionaReuniao(this.reuniao);
+		//a reuniao e definida atraves do metodo carregarCamposParaGravar(); e depois pelo m�todo reuniaoLN.adicionaReuniao(this.reuniao);
 		//nao esquecer do IDCELULA e do IDESTADO
 
 
@@ -86,7 +86,7 @@ public class ReuniaoMembroLN implements Serializable {
 			mdao.removeMembroReuniao(reu); //estudar o que isso faz
 
 			for(ReuniaoMembro r : list2){ //RELA��O PRONTA DE MEMBROS PRESENTES
-				r.setReuniao(getReuniao(reu.getIdreuniao())); //associa cada membro e reuni�o passada no metodo gravar();
+				r.setReuniao(getReuniao(reu.getIdreuniao())); //associa cada membro e reuniao passada no metodo gravar();
 			}
 
 			mdao.adiciona(new ArrayList<ReuniaoMembro>(list2)); //M�TODO ONTRANSFER() FAZ A ASSOCIA��O DE PRESEN�A

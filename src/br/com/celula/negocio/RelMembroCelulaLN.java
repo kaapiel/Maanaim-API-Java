@@ -21,7 +21,7 @@ public class RelMembroCelulaLN implements Serializable{
 	}
 	public void getCelulas(){
 		CelulaLN ln = new CelulaLN();
-		this.celulas = ln.getList();//só as ativas
+		this.celulas = ln.getList();
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;

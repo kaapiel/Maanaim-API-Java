@@ -59,7 +59,7 @@ public class CelulaLN implements Serializable {
 			return msg;	
 		}
 		if(cdao.estaUsadaNaCelulaOrigem(x)){
-			msg="nao excluido, pois existem referencia a esta c�lula em outras c�lulas originadas desta.";
+			msg="nao excluido, pois existem referencia a esta celula em outras celulas originadas desta.";
 			return msg;				
 		}
 			

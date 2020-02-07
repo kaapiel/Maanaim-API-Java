@@ -25,7 +25,7 @@ public class AniversarianteMB implements Serializable{
 	
 	public void listar(){
 		if(mes==null||mes==0){
-			msg="Informe o mês desejado.";
+			msg="Informe o mes desejado.";
 			mensagens();
 		}else{
 			MembroLN membroLN = new MembroLN();

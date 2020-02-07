@@ -117,11 +117,11 @@ public class AgendarReuniaoMB implements Serializable{
 	public void grava(){
 		if(validaCampos()){
 			if(reuniao.getDatareuniao().before(new Date(System.currentTimeMillis()))){
-				msg="A data da reuni�o nao pode ser menor que hoje.";		
+				msg="A data da reuniao nao pode ser menor que hoje.";		
 				mensagens();				
 			}else{
 				if(reuniaoLN.existeReuniaoComMenosDeUmaSemana(reuniao)){
-					msg="Somente e poss�vel o agendamento com diferen�a de uma semana entre as reuni�es.";		
+					msg="Somente e poss�vel o agendamento com diferen�a de uma semana entre as reunioes.";		
 					mensagens();
 				}else{
 					reuniaoLN = new ReuniaoLN();

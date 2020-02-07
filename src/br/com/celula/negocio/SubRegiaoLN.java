@@ -53,7 +53,7 @@ public class SubRegiaoLN implements Serializable {
 			}
 		}			
 		if(x.getCelulas().size()!=0){
-			msg="nao excluido, pois existem c�lulas vinculadas a esta subregi�o.";
+			msg="nao excluido, pois existem celulas vinculadas a esta subregi�o.";
 			return msg;					
 		}
 		

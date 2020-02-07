@@ -317,7 +317,7 @@ public class MembroMB implements Serializable{
 				}	
 			}
 			if(membro.getCelula().getIdcelula()==null){
-				//msg = "A C�lula e obrigatoria.";
+				//msg = "A celula e obrigatoria.";
 				//erros.add(msg);			
 				b = false;				
 			}

@@ -103,7 +103,7 @@ public class CelulaMB implements Serializable{
 				celula.setDatacriacao(new Date(System.currentTimeMillis()));
 			celulaLN = new CelulaLN();
 			if(verificarOrigemRepetida()){
-				msg="A c�lula origem nao pode ser igual a c�lula selecionada!";
+				msg="A celula origem nao pode ser igual a celula selecionada!";
 			}else{
 				if(controlaCadastro==1)		
 					msg = celulaLN.adicionaCelula(this.celula);

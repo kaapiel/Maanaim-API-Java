@@ -217,7 +217,7 @@ public class RelCelulaMB implements Serializable{
 				pai = s;
 			else
 				filhas.add(s);
-		root = new DefaultTreeNode("ORIGEM DAS CÉLULAS", null);
+		root = new DefaultTreeNode("ORIGEM DAS CELULAS", null);
 		List<Celula>  rs = celulas;
 		ordenaLista(rs);
 		
