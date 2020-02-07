@@ -61,7 +61,7 @@ public class AvisosMB implements Serializable{
 	
 	public void exclui(){
 		if(this.aviso.getIdaviso()==null){
-			msg = "Nenhum registro selecionado para exclusão.";
+			msg = "Nenhum registro selecionado para exclusï¿½o.";
 			mensagens();			
 		}else{
 			avisosLN = new AvisosLN();
@@ -86,7 +86,7 @@ public class AvisosMB implements Serializable{
 			listar();
 		}else{
 			//for(String s:erros)
-				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"","Campos com * são obrigatórios.")); 
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"","Campos com * sï¿½o obrigatorios.")); 
 		//	erros.clear(); 
 		}
 	}
@@ -122,7 +122,7 @@ public class AvisosMB implements Serializable{
  	private boolean validaCampos(Avisos a) {
 		boolean b = true;
 		if(a.getTitulo().length()==0){
-			msg = "Campo Título é obrigatório!";
+			msg = "Campo Tï¿½tulo e obrigatorio!";
 			erros.add(msg);
 			b= false;
 		}
@@ -130,20 +130,20 @@ public class AvisosMB implements Serializable{
 		try{	
 			if(dataEvento!=""){
 				if(!ValidarData.dataOk(dataEvento)){
-					msg = "A data de cadastro é inválida!";
+					msg = "A data de cadastro e invalida!";
 					mensagens();
 					//erros.add(msg);			
 					b = false;
 				}	
 				
 				if(ValidarData.menorQueTalAno(dataEvento, 2000)){
-					msg = "A data de cadastro não pode ser menor que 2000!";
+					msg = "A data de cadastro nao pode ser menor que 2000!";
 					mensagens();
 					//erros.add(msg);			
 					b = false;
 				}	
 			}else{
-				//msg = "A data de cadastro é obrigatória!";
+				//msg = "A data de cadastro e obrigatoria!";
 				//mensagens();
 				//erros.add(msg);			
 				b = false;

@@ -37,7 +37,7 @@ public class AcessoMB implements Serializable{
     
     public static AcessoMB getInstancia() throws Exception{  
         if(instancia == null)  
-            throw new Exception("Não há usuario logado no sistema!");          
+            throw new Exception("nao ha usuario logado no sistema!");          
         return instancia;  
     }  
     
@@ -60,13 +60,13 @@ public class AcessoMB implements Serializable{
 	            }  
 	              
 	        } catch (Exception e) {  
-	        	msg="Usuário ou senha inválidos.";
+	        	msg="Usuï¿½rio ou senha invalidos.";
 				mensagens();
 		    	usuario="";
 		    	senha="";
 	        } 		
 		}else{
-			msg="Usuário ou senha inválidos.";
+			msg="Usuï¿½rio ou senha invalidos.";
 			mensagens();
 		}
 	}

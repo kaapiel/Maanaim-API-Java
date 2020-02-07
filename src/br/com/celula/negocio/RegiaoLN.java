@@ -43,19 +43,19 @@ public class RegiaoLN implements Serializable {
 		for(SubRegiao r:x.getSubregioes()){
 			for(Celula c:r.getCelulas()){
 				if(c.getMembros().size()!=0){
-					msg="Não excluido, pois existem membros vinculadas a esta região.";
+					msg="nao excluido, pois existem membros vinculadas a esta regiï¿½o.";
 					return msg;	
 				}
 			}
 		}				
 		for(SubRegiao r:x.getSubregioes()){
 			if(r.getCelulas().size()!=0){
-				msg="Não excluido, pois existem células vinculadas a esta região.";
+				msg="nao excluido, pois existem cï¿½lulas vinculadas a esta regiï¿½o.";
 				return msg;					
 			}
 		}
 		if(x.getSubregioes().size()!=0){
-			msg="Não excluido, pois existem sub-regiões vinculadas a esta região.";
+			msg="nao excluido, pois existem sub-regioes vinculadas a esta regiï¿½o.";
 			return msg;
 		}
 		

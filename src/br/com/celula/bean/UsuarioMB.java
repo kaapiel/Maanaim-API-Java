@@ -56,7 +56,7 @@ public class UsuarioMB implements Serializable{
 	
 	public void exclui(){
 		if(this.usuario.getIdusuario()==null){
-			msg = "Nenhum registro selecionado para exclusão.";
+			msg = "Nenhum registro selecionado para exclusï¿½o.";
 			mensagens();			
 		}else{
 			usuarioLN = new UsuarioLN();
@@ -81,7 +81,7 @@ public class UsuarioMB implements Serializable{
 			listar();
 		}else{
 			//for(String s:erros)
-				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"","Campos com * são obrigatórios.")); 			
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"","Campos com * sï¿½o obrigatorios.")); 			
 			//erros.clear(); 
 		}
 	}
@@ -99,7 +99,7 @@ public class UsuarioMB implements Serializable{
 		
 	public void gravaSenha(){
 		if(!senha1.equals(senha2)){
-			msg="As senhas não conferem.";
+			msg="As senhas nao conferem.";
 			mensagens();
 		}else{
 			if(senha1=="" || senha2==""){

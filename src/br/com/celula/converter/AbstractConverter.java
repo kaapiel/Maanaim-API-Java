@@ -38,7 +38,7 @@ public abstract class AbstractConverter implements Converter {
             String id = getConversionId(value);        
             if (id == null || id.isEmpty()) {
                 throw new IllegalArgumentException(
-                        "Objeto não pode ser convertido.");
+                        "Objeto nao pode ser convertido.");
             }
             getViewMap(context).put(id, value);
             return id;

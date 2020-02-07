@@ -169,13 +169,13 @@ public class RelatorioLN implements Serializable{
 	    @SuppressWarnings("rawtypes")
 		HashMap param = new HashMap();
 	    String periodo="";
-	    String faixa="Faixa Et�ria selecionada: de " +idadeinicio + " a " + idadefim + " anos.";
+	    String faixa="Faixa Etoria selecionada: de " +idadeinicio + " a " + idadefim + " anos.";
 	    String percfreq="% de frequencia selecionado: de " + ipercentual*100 + " a " + fpercentual*100;
 	    String totaldemembros = "Quantidade total de membros: " + totaldememb;
 	    if(datainicio!=null&datafim!=null){
 	    	periodo = "Per�odo selecionado das reuni�es: " 
 	    			+ ValidarData.dataParaString(datainicio) + 
-	    			" � " + ValidarData.dataParaString(datafim);
+	    			" e " + ValidarData.dataParaString(datafim);
 	    }else{
 	    	periodo ="Per�odo selecionado das reuni�es: Todas Reuni�es" ;
 	    }
@@ -201,7 +201,7 @@ public class RelatorioLN implements Serializable{
 		String nomearquivo = new Long(System.currentTimeMillis()).toString() + ".png";
 		DefaultPieDataset ds = new DefaultPieDataset( );
 	    ds.setValue( "Selecionados" , new Double( selecionados ) );  
-	    ds.setValue( "N�o Selecionados" , new Double( total-selecionados ) ); 
+	    ds.setValue( "nao Selecionados" , new Double( total-selecionados ) ); 
 		JFreeChart grafico = ChartFactory.createPieChart("% Membros Selecionados", ds, true, true, false);
 		OutputStream arquivo = new FileOutputStream(ec.getRealPath("/resources/tmp/"+nomearquivo));
 		ChartUtils.writeChartAsPNG(arquivo, grafico, 650, 500);
@@ -249,7 +249,7 @@ public class RelatorioLN implements Serializable{
 	    if(datainicio!=null&datafim!=null){
 	    	periodo = "Per�odo selecionado das reuni�es: " 
 	    			+ ValidarData.dataParaString(datainicio) + 
-	    			" � " + ValidarData.dataParaString(datafim);
+	    			" e " + ValidarData.dataParaString(datafim);
 	    }else{
 	    	periodo ="Per�odo selecionado das reuni�es: Todas Reuni�es" ;
 	    }

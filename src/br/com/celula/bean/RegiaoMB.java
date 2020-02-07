@@ -63,7 +63,7 @@ public class RegiaoMB implements Serializable{
 	
 	public void exclui(){
 		if(this.regiao.getIdregiao()==null){
-			msg = "Nenhum registro selecionado para exclusão.";
+			msg = "Nenhum registro selecionado para exclusï¿½o.";
 			mensagens();			
 		}else{
 			regiaoLN = new RegiaoLN();
@@ -88,7 +88,7 @@ public class RegiaoMB implements Serializable{
 			listar();
 		}else{
 			//for(String s:erros)
-				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"","Campos com * são obrigatórios.")); 
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"","Campos com * sï¿½o obrigatorios.")); 
 			//erros.clear(); 
 		}
 	}
@@ -136,7 +136,7 @@ public class RegiaoMB implements Serializable{
     
     public void adicionaResponsavel(){
     	if(regiao.getPastores().size()==2){
-    		msg="É permitido apenas 2 responsáveis. Remova algum para depois adicionar.";
+    		msg="ï¿½ permitido apenas 2 responsï¿½veis. Remova algum para depois adicionar.";
     		mensagens();
     	}else{             			
     		regiao.getPastores().add(membro);

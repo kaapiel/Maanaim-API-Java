@@ -102,7 +102,7 @@ public class MembroMB implements Serializable{
 	
 	public void exclui(){
 		if(this.membro.getIdmembro()==null){
-			msg = "Nenhum registro selecionado para exclusão.";
+			msg = "Nenhum registro selecionado para exclusï¿½o.";
 			mensagens();			
 		}else{
 			membroLN = new MembroLN();
@@ -127,7 +127,7 @@ public class MembroMB implements Serializable{
 			listar();
 		}else{
 			//for(String s:erros)
-				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"","Campos com * são obrigatórios.")); 
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"","Campos com * sï¿½o obrigatorios.")); 
 		//	erros.clear(); 
 		}
 	}
@@ -190,44 +190,44 @@ public class MembroMB implements Serializable{
  	private boolean validaCampos(Membro m) {
 		boolean b = true;
 		if(m.getNome().length()==0){
-			msg = "Campo nome é obrigatório!";
+			msg = "Campo nome e obrigatorio!";
 			erros.add(msg);
 			b= false;
 		}
 		if(rua.length()==0){
-			msg = "Campo Rua/Av. é obrigatório!";
+			msg = "Campo Rua/Av. e obrigatorio!";
 			erros.add(msg);			
 			b = false;
 		}
 		if(bairro.length()==0){
-			msg = "Campo Bairro é obrigatório!";
+			msg = "Campo Bairro e obrigatorio!";
 			erros.add(msg);			
 			b = false;
 		}
 		if(cidade.length()==0){
-			msg = "Campo Cidade é obrigatório!";
+			msg = "Campo Cidade e obrigatorio!";
 			erros.add(msg);			
 			b = false;
 		}
 		if(uf.length()==0){
-			msg = "Campo UF é obrigatório!";
+			msg = "Campo UF e obrigatorio!";
 			erros.add(msg);			
 			b = false;
 		}
 		if(sCep.length()==0){
-			msg = "Campo CEP é obrigatório!";
+			msg = "Campo CEP e obrigatorio!";
 			erros.add(msg);			
 			b = false;
 		}
 		if(m.getSexo()==null||m.getSexo()==""){
-			msg = "Campo sexo é obrigatório!";
+			msg = "Campo sexo e obrigatorio!";
 			erros.add(msg);			
 			b = false;
 		}				
 		if(m.getCpf().length()>0){
 			String cpf = m.getCpf().replace(".", "").replace("-", "");						
 			if(!ValidaCPF.isCPF(cpf)){
-				msg = "Campo cpf inválido!";
+				msg = "Campo cpf invalido!";
 				mensagens();
 				//erros.add(msg);	
 				b =  false;	
@@ -248,76 +248,76 @@ public class MembroMB implements Serializable{
 		try{	
 			if(datacadastro!=""){
 				if(!ValidarData.dataOk(datacadastro)){
-					msg = "A data de cadastro é inválida!";
+					msg = "A data de cadastro e invalida!";
 					mensagens();
 					//erros.add(msg);			
 					b = false;
 				}	
 				if(ValidarData.maiorQueHoje(datacadastro)){
-					msg = "A data de cadastro não pode ser maior que hoje!";
+					msg = "A data de cadastro nao pode ser maior que hoje!";
 					mensagens();
 					//erros.add(msg);			
 					b = false;
 				}	
 				if(ValidarData.menorQueTalAno(datacadastro, 2000)){
-					msg = "A data de cadastro não pode ser menor que 2000!";
+					msg = "A data de cadastro nao pode ser menor que 2000!";
 					mensagens();
 					//erros.add(msg);			
 					b = false;
 				}	
 			}else{
-				//msg = "A data de cadastro é obrigatória!";
+				//msg = "A data de cadastro e obrigatoria!";
 				//mensagens();
 				//erros.add(msg);			
 				b = false;
 			}
 			if(batismo!=""){
 				if(!ValidarData.dataOk(batismo)){
-					msg = "A data de batismo é inválida!";
+					msg = "A data de batismo e invalida!";
 					mensagens();
 					//erros.add(msg);			
 					b = false;
 				}	
 				if(ValidarData.maiorQueHoje(batismo)){
-					msg = "A data de batismo não pode ser maior que hoje!";
+					msg = "A data de batismo nao pode ser maior que hoje!";
 					mensagens();
 					//erros.add(msg);			
 					b = false;
 				}
 				if(ValidarData.maiorQueNascimento(batismo,nascimento)){
-					msg = "A data de batismo não pode ser menor que a data de nascimento!";
+					msg = "A data de batismo nao pode ser menor que a data de nascimento!";
 					mensagens();
 					//erros.add(msg);			
 					b = false;
 				}	
 				/*	if(ValidarData.menorQueTalAno(batismo, 1915)){
-					msg = "A data de batismo não pode ser menor que 1915!";
+					msg = "A data de batismo nao pode ser menor que 1915!";
 					erros.add(msg);			
 					b = false;
 				}	*/
 			}
 			if(nascimento!=""){
 				if(!ValidarData.dataOk(nascimento)){
-					msg = "A data de nascimento é inválida!";
+					msg = "A data de nascimento e invalida!";
 					mensagens();
 					//erros.add(msg);			
 					b = false;
 				}	
 				if(ValidarData.maiorQueHoje(nascimento)){
-					msg = "A data de nascimento não pode ser maior que hoje!";
+					msg = "A data de nascimento nao pode ser maior que hoje!";
 					mensagens();
 					//erros.add(msg);			
 					b = false;
 				}	
 				if(ValidarData.menorQueTalAno(nascimento, 1915)){
-					msg = "A data de nascimento não podeser menor que 1915!";
+					msg = "A data de nascimento nao podeser menor que 1915!";
 					mensagens();
 					//erros.add(msg);			
 					b = false;
 				}	
 			}
 			if(membro.getCelula().getIdcelula()==null){
-				//msg = "A Célula é obrigatória.";
+				//msg = "A Cï¿½lula e obrigatoria.";
 				//erros.add(msg);			
 				b = false;				
 			}
@@ -401,7 +401,7 @@ public class MembroMB implements Serializable{
     	if(cln.existeCelulaCadastrada()){
 	    	existecelulas = true;
     	}else{
-	    	msg = "Cadastro não pôde ser aberto pois não há céluas cadastradas.";
+	    	msg = "Cadastro nao pode ser aberto pois nao ha cï¿½luas cadastradas.";
 	    	mensagens();
     		existecelulas = false;
     	}

@@ -55,11 +55,11 @@ public class CelulaLN implements Serializable {
 		dao = new GenericDao<Celula>(manager);
 		CelulaDao cdao = new CelulaDao();
 		if(x.getMembros().size()!=0){
-			msg="Não excluido, pois existem membros vinculadas a esta célala.";
+			msg="nao excluido, pois existem membros vinculadas a esta cï¿½lala.";
 			return msg;	
 		}
 		if(cdao.estaUsadaNaCelulaOrigem(x)){
-			msg="Não excluido, pois existem referencia a esta célula em outras células originadas desta.";
+			msg="nao excluido, pois existem referencia a esta cï¿½lula em outras cï¿½lulas originadas desta.";
 			return msg;				
 		}
 			

@@ -74,8 +74,8 @@ public class ReuniaoMembroLN implements Serializable {
 
 	public String gravar(Reuniao reu, List<Membro> ausentes, List<ReuniaoMembro> participantes) {
 
-		//a reunião é definida atraves do metodo carregarCamposParaGravar(); e depois pelo método reuniaoLN.adicionaReuniao(this.reuniao);
-		//não esquecer do IDCELULA e do IDESTADO
+		//a reuniï¿½o e definida atraves do metodo carregarCamposParaGravar(); e depois pelo mï¿½todo reuniaoLN.adicionaReuniao(this.reuniao);
+		//nao esquecer do IDCELULA e do IDESTADO
 
 
 		ReuniaoMembroDao mdao = new ReuniaoMembroDao();
@@ -85,13 +85,13 @@ public class ReuniaoMembroLN implements Serializable {
 		try{
 			mdao.removeMembroReuniao(reu); //estudar o que isso faz
 
-			for(ReuniaoMembro r : list2){ //RELAÇÃO PRONTA DE MEMBROS PRESENTES
-				r.setReuniao(getReuniao(reu.getIdreuniao())); //associa cada membro à reunião passada no metodo gravar();
+			for(ReuniaoMembro r : list2){ //RELAï¿½ï¿½O PRONTA DE MEMBROS PRESENTES
+				r.setReuniao(getReuniao(reu.getIdreuniao())); //associa cada membro e reuniï¿½o passada no metodo gravar();
 			}
 
-			mdao.adiciona(new ArrayList<ReuniaoMembro>(list2)); //MÉTODO ONTRANSFER() FAZ A ASSOCIAÇÃO DE PRESENÇA
+			mdao.adiciona(new ArrayList<ReuniaoMembro>(list2)); //Mï¿½TODO ONTRANSFER() FAZ A ASSOCIAï¿½ï¿½O DE PRESENï¿½A
 
-			for(Membro m : ausentes){ //MEMBROS ausentes SEM RELAÇÃO À REUNIAO
+			for(Membro m : ausentes){ //MEMBROS ausentes SEM RELAï¿½ï¿½O e REUNIAO
 				ReuniaoMembro rm = new ReuniaoMembro();
 				rm.setEstevepresente(false);
 				rm.setMembro(getMembro(m.getIdmembro()));

@@ -47,13 +47,13 @@ public class SubRegiaoLN implements Serializable {
 		if(x.getCelulas()!=null){
 			for(Celula c:x.getCelulas()){
 				if(c.getMembros().size()!=0){
-					msg="Não excluido, pois existem membros vinculadas a esta subregião.";
+					msg="nao excluido, pois existem membros vinculadas a esta subregiï¿½o.";
 					return msg;	
 				}
 			}
 		}			
 		if(x.getCelulas().size()!=0){
-			msg="Não excluido, pois existem células vinculadas a esta subregião.";
+			msg="nao excluido, pois existem cï¿½lulas vinculadas a esta subregiï¿½o.";
 			return msg;					
 		}
 		

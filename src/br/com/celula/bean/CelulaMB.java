@@ -80,7 +80,7 @@ public class CelulaMB implements Serializable{
 	
 	public void exclui(){
 		if(this.celula.getIdcelula()==null){
-			msg = "Nenhum registro selecionado para exclusão.";
+			msg = "Nenhum registro selecionado para exclusï¿½o.";
 			mensagens();			
 		}else{
 			celulaLN = new CelulaLN();
@@ -103,7 +103,7 @@ public class CelulaMB implements Serializable{
 				celula.setDatacriacao(new Date(System.currentTimeMillis()));
 			celulaLN = new CelulaLN();
 			if(verificarOrigemRepetida()){
-				msg="A célula origem não pode ser igual a célula selecionada!";
+				msg="A cï¿½lula origem nao pode ser igual a cï¿½lula selecionada!";
 			}else{
 				if(controlaCadastro==1)		
 					msg = celulaLN.adicionaCelula(this.celula);
@@ -116,7 +116,7 @@ public class CelulaMB implements Serializable{
 			mensagens();
 		}else{
 			//for(String s:erros)
-				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"","Campos com * são obrigatórios.")); 
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"","Campos com * sï¿½o obrigatorios.")); 
 			//erros.clear(); 
 		}
 	}
@@ -129,35 +129,35 @@ public class CelulaMB implements Serializable{
 		boolean b = true;
 		if(celula.getDescricao().equals("")){
 			b= false;
-			erros.add("Campo descricao é obrigatório.");
+			erros.add("Campo descricao e obrigatorio.");
 		}
 		if(celula.getNome().equals("")){
 			b= false;		
-			erros.add("Campo nome é obrigatório.");
+			erros.add("Campo nome e obrigatorio.");
 		}
 		if(celula.getSubregiao()==null){
 			b= false;		
-			erros.add("Campo nome é obrigatório.");
+			erros.add("Campo nome e obrigatorio.");
 		}
 		try{	
 			if(datacadastro!=""){
 				if(!ValidarData.dataOk(datacadastro)){
-					msg = "A data de cadastro é inválida!";
+					msg = "A data de cadastro e invalida!";
 					erros.add(msg);			
 					b = false;
 				}	
 				if(ValidarData.maiorQueHoje(datacadastro)){
-					msg = "A data de cadastro não pode ser maior que hoje!";
+					msg = "A data de cadastro nao pode ser maior que hoje!";
 					erros.add(msg);			
 					b = false;
 				}	
 				if(ValidarData.menorQueTalAno(datacadastro, 2000)){
-					msg = "A data de cadastro não pode ser menor que 2000!";
+					msg = "A data de cadastro nao pode ser menor que 2000!";
 					erros.add(msg);			
 					b = false;
 				}	
 			}else{
-				msg = "A data de cadastro é obrigatória!";
+				msg = "A data de cadastro e obrigatoria!";
 				erros.add(msg);			
 				b = false;
 			}
@@ -202,7 +202,7 @@ public class CelulaMB implements Serializable{
     public void existemSubRegiaoCadastrada(){
     	SubRegiaoLN rln = new SubRegiaoLN();
     	if(!rln.existeSubRegiaoCadastrada()){
-	    	msg = "Cadastro não pôde ser aberto pois não há subregiões cadastradas.";
+	    	msg = "Cadastro nao pode ser aberto pois nao ha subregioes cadastradas.";
 	    	mensagens();
 	    	existemsubregioes = false;
     	}else{
@@ -212,7 +212,7 @@ public class CelulaMB implements Serializable{
 	
     public void adicionaResponsavel(){
     	if(celula.getLideres().size()==2){
-    		msg="É permitido apenas 2 lideres. Remova algum para depois adicionar.";
+    		msg="ï¿½ permitido apenas 2 lideres. Remova algum para depois adicionar.";
     		mensagens();
     	}else{
     	    			celula.getLideres().add(membro);

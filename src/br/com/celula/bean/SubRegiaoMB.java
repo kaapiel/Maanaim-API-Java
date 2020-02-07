@@ -76,7 +76,7 @@ public class SubRegiaoMB implements Serializable{
 	
 	public void exclui(){
 		if(this.subregiao.getIdsubregiao()==null){
-			msg = "Nenhum registro selecionado para exclusão.";
+			msg = "Nenhum registro selecionado para exclusï¿½o.";
 			mensagens();			
 		}else{
 			subregiaoLN = new SubRegiaoLN();
@@ -101,7 +101,7 @@ public class SubRegiaoMB implements Serializable{
 			limpaCadastro();
 		}else{
 			//for(String s:erros)
-				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"","Campos com * são obrigatórios.")); 
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"","Campos com * sï¿½o obrigatorios.")); 
 			//erros.clear(); 
 		}
 	}
@@ -109,19 +109,19 @@ public class SubRegiaoMB implements Serializable{
 	private boolean validaCampos() {
 		boolean b = true;
 		if(subregiao.getNome()==""){
-			erros.add("Campo nome é obrigatório.");
+			erros.add("Campo nome e obrigatorio.");
 			b= false;
 		}
 		if(subregiao.getDescricao()==""){
-			erros.add("Campo nome é obrigatório.");
+			erros.add("Campo nome e obrigatorio.");
 			b= false;
 		}
 		if(regiao==null){
-			erros.add("Campo Região é obrigatória.");
+			erros.add("Campo Regiï¿½o e obrigatoria.");
 			b= false;
 		}
 		if(regiao.getCor()==""){
-			erros.add("Campo Região é obrigatória.");
+			erros.add("Campo Regiï¿½o e obrigatoria.");
 			b= false;
 		}		
 		return b;
@@ -146,7 +146,7 @@ public class SubRegiaoMB implements Serializable{
     public void existemRegiaoCadastrada(){
     	RegiaoLN rln = new RegiaoLN();
     	if(!rln.existeRegiaoCadastrada()){
-	    	msg = "Cadastro não pôde ser aberto pois não há regiões cadastradas.";
+	    	msg = "Cadastro nao pode ser aberto pois nao ha regioes cadastradas.";
 	    	mensagens();
 	    	existemregioes = false;
     	}else{
@@ -175,7 +175,7 @@ public class SubRegiaoMB implements Serializable{
 	
     public void adicionaResponsavel(){
     	if(subregiao.getSupervisores().size()==2){
-    		msg="É permitido apenas 2 supervisores. Remova algum para depois adicionar.";
+    		msg="ï¿½ permitido apenas 2 supervisores. Remova algum para depois adicionar.";
     		mensagens();
     	}else{
 			subregiao.getSupervisores().add(membro);

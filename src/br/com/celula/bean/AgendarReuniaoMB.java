@@ -66,7 +66,7 @@ public class AgendarReuniaoMB implements Serializable{
 	
 	public void exclui(){
 		if(this.reuniao.getIdreuniao()==null){
-			msg = "Nenhum registro selecionado para exclusão.";
+			msg = "Nenhum registro selecionado para exclusï¿½o.";
 			mensagens();			
 		}else{
 			reuniaoLN = new ReuniaoLN();
@@ -117,11 +117,11 @@ public class AgendarReuniaoMB implements Serializable{
 	public void grava(){
 		if(validaCampos()){
 			if(reuniao.getDatareuniao().before(new Date(System.currentTimeMillis()))){
-				msg="A data da reunião não pode ser menor que hoje.";		
+				msg="A data da reuniï¿½o nao pode ser menor que hoje.";		
 				mensagens();				
 			}else{
 				if(reuniaoLN.existeReuniaoComMenosDeUmaSemana(reuniao)){
-					msg="Somente é possível o agendamento com diferença de uma semana entre as reuniões.";		
+					msg="Somente e possï¿½vel o agendamento com diferenï¿½a de uma semana entre as reuniï¿½es.";		
 					mensagens();
 				}else{
 					reuniaoLN = new ReuniaoLN();
@@ -138,7 +138,7 @@ public class AgendarReuniaoMB implements Serializable{
 				}
 			}
 		}else{
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"","Campos com * são obrigatórios.")); 
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"","Campos com * sï¿½o obrigatorios.")); 
 		}
 	}
 
@@ -151,27 +151,27 @@ public class AgendarReuniaoMB implements Serializable{
 		if(celula.getIdcelula()==null)			
 			b= false;		
 		if(rua.length()==0){
-			msg = "Campo Rua/Av. é obrigatório!";
+			msg = "Campo Rua/Av. e obrigatorio!";
 			erros.add(msg);			
 			b = false;
 		}
 		if(bairro.length()==0){
-			msg = "Campo Bairro é obrigatório!";
+			msg = "Campo Bairro e obrigatorio!";
 			erros.add(msg);			
 			b = false;
 		}
 		if(cidade.length()==0){
-			msg = "Campo Cidade é obrigatório!";
+			msg = "Campo Cidade e obrigatorio!";
 			erros.add(msg);			
 			b = false;
 		}
 		if(uf.length()==0){
-			msg = "Campo UF é obrigatório!";
+			msg = "Campo UF e obrigatorio!";
 			erros.add(msg);			
 			b = false;
 		}
 		if(sCep.length()==0){
-			msg = "Campo CEP é obrigatório!";
+			msg = "Campo CEP e obrigatorio!";
 			erros.add(msg);			
 			b = false;
 		}		
