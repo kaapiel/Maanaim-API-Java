@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"  
+   		xmlns:f="http://java.sun.com/jsf/core"  
+    	xmlns:p="http://primefaces.org/ui"
+    	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+    	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+
+</h:head>
+   	
+<h:body>
+<ui:composition template="content.xhtml">
+<ui:define name="titulo">Cadastro de Regiões</ui:define>
+
+
+<ui:define name="conteudo">
+<p:layout >
+	<p:layoutUnit position="west" resizable="false" size="200" minSize="200" maxSize="200" style="border: none !important; " >
+		<h:form id="formtb">
+			<p:dataTable id="tb" value="#{regiaoMB.regioes}" var="r" >
+				<f:facet name="header">Regiões Cadastradas</f:facet>
+		        <p:column style="text-align: center">
+		             <p:commandButton value="#{r.cor}" action="#{regiaoMB.listarMembros}" update=":formCad"  style="width:100%;">
+		                <f:setPropertyActionListener value="#{r}" target="#{regiaoMB.regiao}" />
+		            </p:commandButton>
+
+		        </p:column>
+			</p:dataTable>	
+		</h:form>		
+	</p:layoutUnit>
+	<p:layoutUnit position="center" style="border: none !important; ">
+<h:form id="formCad" style="width:98%;">
+	<p:panel styleClass="panel">
+		<f:facet name="header"><h:outputLabel value="Cadastro de Regiões" style="font-size:large;"/></f:facet>
+
+		<h:panelGrid columns="2">			  
+			<h:outputLabel  value="Cor *"/>	
+			<p:inputText value="#{regiaoMB.regiao.cor}" size="23" maxlength="20" disabled="#{regiaoMB.controlaCadastro eq 0}" />					
+			<h:outputLabel value="Descrição da Região *"/>
+			<p:inputTextarea value="#{regiaoMB.regiao.descricao}" size="300" maxlength="300" disabled="#{regiaoMB.controlaCadastro eq 0}" />				
+		</h:panelGrid>
+		<p:panelGrid columns="1" rendered="#{regiaoMB.regiao.idregiao ne null}">
+			<h:outputLabel value="Adicionar Responsáveis"/>
+			<h:panelGrid columns="2">	
+				<p:autoComplete id="mem" multiple="false" value="#{regiaoMB.membro}" completeMethod="#{regiaoMB.autocompletar}" disabled="#{regiaoMB.controlaCadastro eq 0}"
+		                        var="m" itemLabel="#{m.nome}" itemValue="#{m}" converter="membroConverter" forceSelection="true" >
+		            <p:column style="width:10%">
+		                 <h:outputText value="#{m.nome}" />
+		            </p:column>
+		 
+		            <p:column>
+		                <h:outputText value="#{m.apelido}" />
+		            </p:column>
+		        </p:autoComplete>
+		        <p:commandButton action="#{regiaoMB.adicionaResponsavel}" icon="ui-icon-check" disabled="#{regiaoMB.controlaCadastro eq 0}" update="resp,:formMsg"/>
+	        </h:panelGrid>
+           <p:dataList id="resp" value="#{regiaoMB.regiao.pastores}" var="p" type="ordered" emptyMessage="">
+		        <f:facet name="header">
+		            Responsáveis da Região
+		        </f:facet>
+		        <p:commandLink action="#{regiaoMB.removeResponsavel}" update=":formCad" title="Remover" 
+		        		disabled="#{regiaoMB.controlaCadastro eq 0}" styleClass="ui-icon ui-icon-trash" style="float:left;margin-right:10px">
+		            <f:setPropertyActionListener value="#{p}" target="#{regiaoMB.membro}" />
+		            <h:outputText value="#{p.nome}" />
+		        </p:commandLink>
+				<h:outputText value="#{p.nome}" style="display:inline-block"/>
+		        
+		    </p:dataList>
+		</p:panelGrid>		
+		<f:facet name="footer">					
+			<p:commandButton value="Novo" action="#{regiaoMB.novo}" update=":formCad"/>
+			<p:commandButton value="Editar" update=":formCad" action="#{regiaoMB.edita}" disabled="#{regiaoMB.controlaCadastro ne 0 || regiaoMB.regiao.idregiao eq null}"/>
+			<p:commandButton value="Excluir" action="#{regiaoMB.exclui}" update=":formCad,:formtb,:formMsg" disabled="#{regiaoMB.controlaCadastro eq 0}"/>
+			<p:commandButton value="Cancelar" action="#{regiaoMB.limpaCadastro}" update=":formCad,:formtb"/>
+			<p:commandButton value="Gravar" action="#{regiaoMB.grava}" update=":formCad,:formMsg,:formtb" disabled="#{regiaoMB.controlaCadastro eq 0}"/>
+		</f:facet>								
+	
+	</p:panel>
+
+</h:form>	
+	</p:layoutUnit>	
+</p:layout>
+
+
+    <h:form id="formMsg" style="font-size:small;">                      
+        <p:growl id="msg" showDetail="true"  life="5000"/> 
+    </h:form>
+</ui:define>
+</ui:composition>	
+</h:body>	
+
+</html>

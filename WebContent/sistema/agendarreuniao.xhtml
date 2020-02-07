@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"  
+   		xmlns:f="http://java.sun.com/jsf/core"  
+    	xmlns:p="http://primefaces.org/ui"
+    	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</h:head>
+   	
+<h:body>
+<ui:composition template="content.xhtml">
+<ui:define name="titulo">Agendamento de Reunião da Célula</ui:define>
+
+<ui:define name="conteudo">
+<p:layout style="min-width:400px;min-height:200px;">
+    <p:layoutUnit position="west" resizable="false" size="200" minSize="200" maxSize="200" header="Reuniões Agendadas">
+	    <h:form id="mn">
+	    	<p:commandButton icon="ui-icon-refresh" action="#{agendareuniaoMB.listar}" update="reus"
+	    		title="Atualizar lista" style="width:20px;height:20px;"/>
+			<center>
+				<p:dataTable id="reus" value="#{agendareuniaoMB.reunioes}" var="r" >
+					<p:column style="font-size:12px;text-align:center;">
+						<p:commandButton value="#{r.celula.nome} - #{agendareuniaoMB.dataFormatada(r.datareuniao)} - #{agendareuniaoMB.horaFormatada(r.horareuniao)}" update=":formCad,:mn" action="#{agendareuniaoMB.reuniaoSelecionada}">
+							<f:setPropertyActionListener value="#{r}" target="#{agendareuniaoMB.reuniao}" />
+						</p:commandButton>				
+					</p:column>										
+				</p:dataTable>		
+			</center>		
+		</h:form>		
+    </p:layoutUnit>
+ 
+    <p:layoutUnit position="center" header="Agendamento de Reunião da Célula">
+		<h:form id="formCad" style="width:98%;">
+		<p:panel style="border: none !important; ">
+				<p:panelGrid columns="3">
+					<h:outputLabel value="Selecionar a Célula *"/>
+					<p:inputText id="cel" value="#{agendareuniaoMB.celula.nome}" size="30"  disabled="#{agendareuniaoMB.controlaCadastro==0}" />				
+					<p:commandButton icon="ui-icon-search" actionListener="#{dialogMB.selecionarCelula}" disabled="#{agendareuniaoMB.controlaCadastro==0}">
+						<p:ajax event="dialogReturn" listener="#{agendareuniaoMB.celulaSelecionada}" update="cel,:formMsg" />
+					</p:commandButton>
+				</p:panelGrid>
+		
+				<p:panelGrid columns="2">
+					<p:outputLabel value="Data *" />
+					<p:calendar value="#{agendareuniaoMB.reuniao.datareuniao}" mindate="#{agendareuniaoMB.minDate}" pattern="dd/MM/yyyy"  disabled="#{agendareuniaoMB.controlaCadastro==0}" locale="pt"/>
+					<p:outputLabel value="Hora *" />
+					<p:calendar value="#{agendareuniaoMB.reuniao.horareuniao}" label="horas"  pattern="HH:mm" timeOnly="true" locale="pt" disabled="#{agendareuniaoMB.controlaCadastro==0}"/>
+		            <h:outputLabel value="Informe o CEP *" />
+					<p:panelGrid columns="2" style="padding:10px;">
+		                <p:inputText value="#{agendareuniaoMB.sCep}"  maxlength="8" size="9" disabled="#{agendareuniaoMB.controlaCadastro==0}"/>
+		                <p:commandButton  icon="ui-icon-search" actionListener="#{agendareuniaoMB.buscaCep}" disabled="#{agendareuniaoMB.controlaCadastro==0}"
+		                	 onclick="PF('statusDialog').show()" oncomplete="PF('statusDialog').hide()" update=":formCad"/>
+					</p:panelGrid>						
+		           	<h:outputLabel value="Rua/Av. *" />
+		           	<p:inputText value="#{agendareuniaoMB.rua}" size="60" disabled="#{agendareuniaoMB.controlaCadastro==0}"/>
+		           	<h:outputLabel value="Número" />					
+					<p:inputText value="#{agendareuniaoMB.reuniao.numero}" size="8" disabled="#{agendareuniaoMB.controlaCadastro==0}"/>
+		            <h:outputLabel value="Complemento" />
+		            <p:inputText value="#{agendareuniaoMB.reuniao.complemento}"  size="60" disabled="#{agendareuniaoMB.controlaCadastro==0}"/>			
+		           	<h:outputLabel value="Bairro *" />
+					<p:inputText value="#{agendareuniaoMB.bairro}" size="60" disabled="#{agendareuniaoMB.controlaCadastro==0}"/>		           				
+		           	<h:outputLabel value="Cidade *" />
+		           	<p:inputText value="#{agendareuniaoMB.cidade}" size="60" disabled="#{agendareuniaoMB.controlaCadastro==0}"/>
+		           	<h:outputLabel value="UF *" />
+					<p:inputText value="#{agendareuniaoMB.uf}" size="4" maxlength="2" disabled="#{agendareuniaoMB.controlaCadastro==0}"/>								
+				</p:panelGrid>	
+				<f:facet name="footer">
+					<p:panelGrid columns="5">
+						<p:commandButton value="Novo" action="#{agendareuniaoMB.novo}" update=":formCad,:mn" />
+						<p:commandButton value="Editar" action="#{agendareuniaoMB.edita}" update=":formCad,:mn" disabled="#{agendareuniaoMB.reuniao.idreuniao==null}"/>
+						<p:commandButton value="Remover" action="#{agendareuniaoMB.exclui}" disabled="#{agendareuniaoMB.reuniao.idreuniao==null}" update=":formCad,:mn"/>
+						<p:commandButton value="Gravar" action="${agendareuniaoMB.grava}" update=":formCad,:formMsg,:mn" disabled="#{agendareuniaoMB.controlaCadastro==0}"/>
+						<p:commandButton value="Limpar" action="#{agendareuniaoMB.limpaCadastro}" update=":formCad,:mn" disabled="#{agendareuniaoMB.controlaCadastro==0}"/>
+					</p:panelGrid>				
+				</f:facet>
+		</p:panel>	
+		</h:form>
+
+    </p:layoutUnit>
+</p:layout>
+    <h:form id="formMsg" style="font-size:small;">                      
+        <p:growl id="msg" showDetail="true" life="6000"/> 
+    </h:form>
+</ui:define>
+</ui:composition>	
+</h:body>	
+
+</html>

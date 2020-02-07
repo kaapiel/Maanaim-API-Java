@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+<title><ui:insert name="titulo"></ui:insert></title>
+<script type="text/javascript" src="js/padraoPtBr.js"></script>
+<link rel="stylesheet" href="css/content.css" type="text/css" media="screen" />
+<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript" ></script>
+</h:head>      
+
+<h:body>
+<div id="tudo"> 
+<p:layout fullPage="true" style="top: 0px !important" >
+
+	<p:layoutUnit position="north" size="110" closable="false" styleClass="norte" 
+	 style="border:0 !important;text-align: left;">
+		 <div id="logo">
+			 <center>
+			    <img src="img/logo.png"  />
+			    <img src="img/titulo.png"  />
+			 </center>
+		</div>
+
+		<h:form style="font-size:120%;font:Trebuchet MS;font-weight: bold;">		
+		    <p:menubar id="menu" autoDisplay="false"> 
+		        <p:menuitem value="Home" icon="ui-icon-home" url="index.jsf"/> 
+
+		        <p:submenu label="Administrador" rendered="#{cpf==14722846820}">  
+			        <p:menuitem value="Criar de Usuário" url="usuario.jsf" />
+			        <p:menuitem value="Reset Senha" url="reiniciarsenha.jsf" />		
+			        <p:menuitem value="Conf Máscara Plano" url="planocfg.jsf" />
+		        	<p:menuitem value="Alterar Senha" url="trocarsenha.jsf"  />			        	        		       
+		        </p:submenu> 
+		        		        		     
+		        <p:submenu label="Cadastros"  > 
+		        	<p:menuitem value="Equipamento" url="equipamento.jsf" /> 
+			        <p:menuitem value="Lançamentos" url="lancamento.jsf" /> 
+			        <p:menuitem value="Posto" url="posto.jsf" /> 
+			        <p:menuitem value="Preventiva" url="preventiva.jsf" />
+		            <p:menuitem value="Plano de Contas" url="planocontas.jsf" />	
+		            <p:menuitem value="Telespectador" url="telespectador.jsf" />			    
+			        <p:menuitem value="Técnico" url="tecnico.jsf" /> 		          		       	        		       		        	
+		        </p:submenu>  
+
+		        <p:submenu label="Controles"  > 
+			        <p:menuitem value="Manutenção de Preventivas" url="manutencaopreventiva.jsf"/>			         
+			        <p:menuitem value="Informações dos Postos" url="informacoesdospostos.jsf"/>	
+					<p:menuitem value="Informações das Preventivas" url="viewpreventivas.jsf" target="_blank"/>	        
+		        </p:submenu>
+
+		        <p:submenu label="Relatórios" icon="ui-icon-print"  >  
+			        <p:menuitem value="Despesas" url="despesa.jsf"/>	
+			        <p:menuitem value="Gráfico de Despesas" url="graficodespesa.jsf"/>	
+			        <p:menuitem value="Relação dos Patrimônios Cadastrados" url="relequipamento.jsf" target="_blank"/>		        
+		        </p:submenu>
+		        			        
+		        <p:submenu label="Sobre" >  
+			        <p:menuitem value="Sobre o Sistema" url="#" onclick="dgSobre.show()"/>			        
+		        </p:submenu>  
+		  		
+		        <p:submenu label="Fechar" icon="ui-icon-circle-close">  
+			        <p:menuitem value="Sair do Sistema" actionListener="#{acessoMB.sair}" id="sair" icon="ui-icon-close" />
+		        </p:submenu> 	    
+		    </p:menubar> 
+		</h:form>     		
+
+	</p:layoutUnit>
+
+	<p:layoutUnit position="center" style="border:0 !important;">
+		<ui:insert name="headerPagina"/>
+		<ui:insert name="conteudo"/>
+	</p:layoutUnit>
+	
+</p:layout>
+</div>  
+<h:form id="sist">
+<p:dialog id="dgSobre" widgetVar="dgSobre" header="Sobre Sistema" position="center center">
+	<p:panelGrid columns="2">
+		<p:graphicImage value="../img/logo.jpg" width="131" height="73"/>
+		<p:panelGrid columns="1">
+			<p:outputLabel value="RECORD NEWS" style="font-size: 140%;font-style: italic;font-weight: bold;"/>
+			<p:outputLabel value="Sistema Desenvolvido por:" style="font-size: 110%;font-weight: bold;"/>
+			<p:outputLabel value="Departamento de Tecnologia da Informação "/>
+			<p:outputLabel value="Versão: 2.092013(26)"/>
+		</p:panelGrid>
+		
+	</p:panelGrid>
+</p:dialog>
+</h:form>         
+</h:body>      
+</html>

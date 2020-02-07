@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 5.6.2.final using JasperReports Library version 5.6.1  -->
+<!-- 2014-11-18T17:12:54 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rel02" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="172c84db-236e-4fee-9c77-e52286c167d8">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="grafico" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="logo" class="java.lang.String"/>
+	<parameter name="periodo" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="list" class="java.util.List"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="138" splitType="Stretch">
+			<staticText>
+				<reportElement x="110" y="10" width="444" height="44" uuid="41e96e7f-23b4-450c-a0cf-a50179e99b60"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="21" isBold="true"/>
+				</textElement>
+				<text><![CDATA[OFERTAS DOADAS POR BAIRRO]]></text>
+			</staticText>
+			<image scaleImage="FillFrame">
+				<reportElement x="3" y="0" width="100" height="60" uuid="59d634cb-dcb1-43dd-80bc-174ed371872b"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="3" y="74" width="551" height="30" uuid="88389a96-7f6d-4a78-ac8b-f96724165c49"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{periodo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<summary>
+		<band height="342" splitType="Stretch">
+			<image scaleImage="FillFrame">
+				<reportElement x="280" y="0" width="250" height="190" uuid="6b1ee987-f4a9-4dc4-821d-af5db35a2a22"/>
+				<imageExpression><![CDATA[$P{grafico}]]></imageExpression>
+			</image>
+			<subreport>
+				<reportElement isPrintRepeatedValues="false" mode="Opaque" x="0" y="0" width="250" height="333" backcolor="#B3E8FC" uuid="41685e6a-0b08-4688-9232-5c149e3d5880"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{list})]]></dataSourceExpression>
+				<subreportExpression><![CDATA["rel03list.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
+</jasperReport>

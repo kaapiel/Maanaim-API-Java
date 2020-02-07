@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"  
+   		xmlns:f="http://java.sun.com/jsf/core"  
+    	xmlns:p="http://primefaces.org/ui"
+    	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+    	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+
+</h:head>
+   	
+<h:body>
+<ui:composition template="content.xhtml">
+<ui:define name="titulo">Cadastro de Supervisões</ui:define>
+
+
+<ui:define name="conteudo">
+<p:layout >
+	<p:layoutUnit position="west" resizable="false" size="200" minSize="200" maxSize="200" style="border: none !important; " >
+		<h:form id="formtb">
+			<p:dataTable id="tb" value="#{subregiaoMB.subregioes}" var="r">
+				<f:facet name="header">Supervisões</f:facet>
+		        <p:column style="text-align: center">
+		             <p:commandButton  action="#{subregiaoMB.listarMembros}" update=":formCad" value="#{r.nome}" title="Editar" style="width:100%;">
+		                <f:setPropertyActionListener value="#{r}" target="#{subregiaoMB.subregiao}" />
+		            </p:commandButton>
+		        </p:column>
+			</p:dataTable>				
+		</h:form>
+	</p:layoutUnit>
+	<p:layoutUnit position="center" style="border: none !important; ">
+	
+		<h:form id="formCad" style="width:98%;">
+			<p:panel styleClass="panel" rendered="#{subregiaoMB.existemregioes}">
+				<f:facet name="header"><h:outputLabel value="Cadastro de Sub-Regiões" style="font-size:large;"/></f:facet>
+					<p:panelGrid columns="2">			  
+						<h:outputLabel value="Nome *"/>
+						<p:inputText value="#{subregiaoMB.subregiao.nome}" size="30"  disabled="#{subregiaoMB.controlaCadastro == 0}" />			
+						<h:outputLabel  value="Descrição *"/>		
+						<p:inputTextarea value="#{subregiaoMB.subregiao.descricao}" style="width:500px;" disabled="#{subregiaoMB.controlaCadastro == 0}" />	
+					</p:panelGrid>
+					<p:panelGrid columns="3">
+						<h:outputLabel value="Região *" />
+						<p:inputText id="rg1" value="#{subregiaoMB.subregiao.regiao.cor}" disabled="true" size="50"/>
+						<p:commandButton icon="ui-icon-search" actionListener="#{dialogMB.selecionarRegiao}" update=":formCad" disabled="#{subregiaoMB.controlaCadastro==0}">
+						 	<p:ajax event="dialogReturn" listener="#{subregiaoMB.regiaoSelected}" update="rg1" />
+						</p:commandButton>
+					</p:panelGrid>																													
+					<p:panelGrid columns="1" rendered="#{subregiaoMB.subregiao.idsubregiao ne null}">
+						<h:outputLabel value="Adicionar Supervisor"/>
+						<p:panelGrid columns="2">	
+							<p:autoComplete id="mem" multiple="false" value="#{subregiaoMB.membro}" completeMethod="#{subregiaoMB.autocompletar}" disabled="#{subregiaoMB.controlaCadastro eq 0}"
+					                        var="m" itemLabel="#{m.nome}" itemValue="#{m}" converter="membroConverter" forceSelection="true" >
+					            <p:column style="width:10%">
+					                 <h:outputText value="#{m.nome}" />
+					            </p:column>
+					 
+					            <p:column>
+					                <h:outputText value="#{m.apelido}" />
+					            </p:column>
+					        </p:autoComplete>
+					        <p:commandButton action="#{subregiaoMB.adicionaResponsavel}" icon="ui-icon-check" disabled="#{subregiaoMB.controlaCadastro eq 0}" update="resp,:formMsg"/>
+				        </p:panelGrid>
+			           <p:dataList id="resp" value="#{subregiaoMB.subregiao.supervisores}" var="s" type="ordered" emptyMessage="">
+					        <f:facet name="header">
+					            Supervisores
+					        </f:facet>
+					        <p:commandLink action="#{subregiaoMB.removeResponsavel}" update=":formCad" title="Remover" 
+					        		disabled="#{subregiaoMB.controlaCadastro eq 0}" styleClass="ui-icon ui-icon-trash" style="float:left;margin-right:10px">
+					            <f:setPropertyActionListener value="#{s}" target="#{subregiaoMB.membro}" />
+					            <h:outputText value="#{s.nome}" />
+					        </p:commandLink>
+							<h:outputText value="#{s.nome}" style="display:inline-block"/>
+					        
+					    </p:dataList>
+					</p:panelGrid>		
+					<f:facet name="footer">	
+						<h:panelGrid columns="6">
+							<p:commandButton value="Novo" action="#{subregiaoMB.novo}" update=":formCad"/>
+							<p:commandButton value="Editar" update=":formCad" action="#{subregiaoMB.edita}" disabled="#{subregiaoMB.controlaCadastro ne 0 || subregiaoMB.subregiao.idsubregiao eq null}"/>
+							<p:commandButton value="Excluir" action="#{subregiaoMB.exclui}" update=":formCad,:formtb,:formMsg" disabled="#{subregiaoMB.controlaCadastro eq 0}"/>
+							<p:commandButton value="Cancelar" action="#{subregiaoMB.limpaCadastro}" update=":formCad,:formtb"/>
+							<p:commandButton value="Gravar" action="#{subregiaoMB.grava}" update=":formCad,:formMsg,:formtb" disabled="#{subregiaoMB.controlaCadastro eq 0}"/>
+						</h:panelGrid>						
+					</f:facet>
+				</p:panel>
+		</h:form>	
+	</p:layoutUnit>
+</p:layout>
+
+    <h:form id="formMsg" style="font-size:small;">                      
+        <p:growl id="msg" showDetail="true"  life="8000"/> 
+    </h:form>
+    
+    <h:form>
+		<p:remoteCommand action="#{subregiaoMB.existemRegiaoCadastrada}" autoRun="true" update=":formCad,:formMsg"/>
+	</h:form>    
+</ui:define>
+</ui:composition>	
+</h:body>	
+
+</html>

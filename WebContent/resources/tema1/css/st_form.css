@@ -1,0 +1,209 @@
+
+/*                                                                                                                                         
+                                                ,,            ,,                          ,,                                             
+ .M"""bgd mm                                    db          `7MM        mm         mm   `7MM                                    OO OO OO 
+,MI    "Y MM                                                  MM        MM         MM     MM                                    88 88 88 
+`MMb.   mmMMmm ,pW"Wq.`7MMpdMAo.     `7Mb,od8 `7MM  .P"Ybmmm  MMpMMMb.mmMMmm     mmMMmm   MMpMMMb.  .gP"Ya `7Mb,od8 .gP"Ya      || || || 
+  `YMMNq. MM  6W'   `Wb MM   `Wb       MM' "'   MM :MI  I8    MM    MM  MM         MM     MM    MM ,M'   Yb  MM' "',M'   Yb     || || || 
+.     `MM MM  8M     M8 MM    M8       MM       MM  WmmmP"    MM    MM  MM         MM     MM    MM 8M""""""  MM    8M""""""     `' `' `' 
+Mb     dM MM  YA.   ,A9 MM   ,AP       MM       MM 8M         MM    MM  MM         MM     MM    MM YM.    ,  MM    YM.    ,     ,, ,, ,, 
+P"Ybmmd"  `Mbmo`Ybmd9'  MMbmmd'      .JMML.   .JMML.YMMMMMb .JMML  JMML.`Mbmo      `Mbmo.JMML  JMML.`Mbmmd'.JMML.   `Mbmmd'     db db db 
+                        MM                         6'     dP                                                                             
+                      .JMML.                       Ybmmmd'                                                                               
+
+Pattern Lab doesn't have any CSS requirements, which means you can write your styles however you want. Hooray!
+You can use Sass, Less, vanilla CSS, or some other crazy thing I haven't heard of yet.
+So please don't use these styles. They're just here to put together the demo, and nothing more.
+They're intentionally gray, boring, and crappy because you're supposed to do this stuff yourself.
+
+Atomic design is philosophically complimentary with these CSS approaches:
+
+* SMACSS by Jonathan Snook http://smacss.com/
+* OOCSS by Nicole Sullivan http://oocss.org/
+* BEM CSS Methology : http://bem.info/method/
+* CSS Guidelines by Harry Roberts : https://github.com/csswizardry/CSS-Guidelines
+
+So feel free to use any of these approaches. Or don't. It's totally up to you.
+
+*/
+
+body {
+  background: white;
+  font: 100%/1.5 "HelveticaNeue", "Helvetica", "Arial", sans-serif;
+  -webkit-text-size-adjust: 100%;
+  color: #333333; 
+  }
+
+/* Links */
+a {
+  color: #333333;
+  text-decoration: none;
+  outline: 0; }
+  a:hover, a:focus {
+    color: gray; }
+
+/* Headings */
+/*Further Reading: http:/csswizardry.com/2012/02/pragmatic-practical-font-sizing-in-css/ */
+h1, .alpha {
+  line-height: 1.2; }
+
+h2, .beta {
+  line-height: 1.2; }
+
+h3, .gamma {
+  line-height: 1.2; }
+
+/* Subheadings */
+.subheading {
+  font-family: Georgia, Times, "Times New Roman", serif;
+  font-weight: normal; }
+
+/* Text-Related Elements */
+p {
+  margin-bottom: 1em; }
+
+/* Blockquote */
+blockquote {
+  font-style: italic;
+  border-left: 1px solid gray;
+  color: gray;
+  padding-left: 1em;
+  margin-bottom: 1em; }
+
+/* Horizontal Rule */
+hr {
+  border: 0;
+  height: 2px;
+  background: #eeeeee;
+  margin: 2em 0; }
+
+abbr {
+  border-bottom: 1px dotted gray;
+  cursor: help; }
+
+ol, ul {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+/* Definition Lists */
+dl {
+  overflow: hidden;
+  margin: 0 0 1em; }
+
+dt {
+  font-weight: bold; }
+
+dd {
+  margin-left: 0; }
+
+/*------------------------------------*\
+    $MEDIA ELEMENTS
+\*------------------------------------*/
+/* Flexible Media */
+img, video, object {
+  max-width: 100%;
+  height: auto; }
+
+iframe {
+  margin-bottom: 1em; }
+
+figure {
+  margin-bottom: 1em; }
+  figure img {
+    margin-bottom: 0.5em; }
+
+figcaption {
+  font-style: italic; }
+
+/*------------------------------------*\
+    $FORMS
+\*------------------------------------*/
+form ol, form ul {
+  list-style: none;
+  margin-left: 0; }
+
+label {
+  display: block;
+  padding-bottom: 0.5em; }
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: 100%;
+  margin: 0 1px 0; 
+  
+  }
+
+input, textarea {
+  width: 100%;
+  border: 1px solid gray;
+  padding: 0.5em 0.65rem; }
+
+input[type=text], input[type=search], input[type=url], input[type=number], textarea {
+  -webkit-appearance: none; }
+
+button, input[type="submit"] {
+  padding: 0.5em;
+  background: #333333;
+  border: 1px solid gray;
+  cursor: pointer; }
+
+.btn {
+  display: inline-block;
+  background: #333333;
+  color: white;
+  line-height: 1;
+  font-weight: bold;
+  padding: 1em;
+  border: 0;
+  text-align: center; }
+  .btn:hover, .btn:focus {
+    background: gray;
+    color: white; }
+  .btn.disabled {
+    background: #eeeeee;
+    color: gray; }
+
+.btn-small {
+  padding: 0.5em; }
+
+.btn-large {
+  padding: 0.5em;
+  text-transform: uppercase;
+  background: gray;
+  font-size: 1.4rem;
+  font-weight: normal; }
+
+.text-btn {
+  font-style: italic; }
+
+input[type="checkbox"],
+input[type="radio"] {
+  width: auto;
+  margin-right: 0.3em; }
+
+input[type="search"] {
+  -webkit-appearance: none;
+  border-radius: 0; }
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none; }
+
+.field-container {
+  margin-bottom: 1em; }
+
+.inline-form fieldset, .inline-form .inline-container {
+  position: relative; }
+.inline-form input[type=submit], .inline-form button, .inline-form .btn {
+  font-size: 0.875em;
+  padding: 0.65rem 1.3rem;
+  background: #333333;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  width: auto; }
+  .inline-form input[type=submit]:hover, .inline-form input[type=submit]:focus, .inline-form button:hover, .inline-form button:focus, .inline-form .btn:hover, .inline-form .btn:focus {
+    background: gray;
+    color: white; }

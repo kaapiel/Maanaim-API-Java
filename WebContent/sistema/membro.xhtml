@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"  
+   		xmlns:f="http://java.sun.com/jsf/core"  
+    	xmlns:p="http://primefaces.org/ui"
+    	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+
+</h:head>
+   	
+<h:body>
+<ui:composition template="content.xhtml">
+<ui:define name="titulo">Cadastro de Membros</ui:define>
+
+
+<ui:define name="conteudo">
+<h:form id="formCad" style="width:88%;" >
+	<p:panel styleClass="panel" rendered="#{membroMB.existecelulas}">
+	<f:facet name="header"><h:outputLabel value="Cadastro de Membros" style="font-size:large;"/></f:facet>
+
+		<div style="float: right;">
+			<img src="#{request.contextPath}/resources/tmp/#{membroMB.foto}"  height="180" width="180"/>		
+			<br></br>
+			<center><p:commandButton value="Foto" oncomplete="PF('dgfoto').show()" disabled="#{membroMB.controlaCadastro==0}"/></center>
+		</div>
+		<p:panelGrid columns="2">			  
+			<h:outputLabel value="Nome *"/>
+			<p:panelGrid columns="2">
+				<p:inputText value="#{membroMB.membro.nome}" size="75"  disabled="#{membroMB.controlaCadastro==0}"/>				
+				<p:commandButton icon="ui-icon-search" actionListener="#{dialogMB.selecionarMembro}">
+					<p:ajax event="dialogReturn" listener="#{membroMB.membroSelecionado}" update=":formCad" />
+				</p:commandButton>
+			</p:panelGrid>
+		</p:panelGrid>
+		<p:panelGrid columns="4">
+			<h:outputLabel  value="Apelido"/>		
+			<p:inputText value="#{membroMB.membro.apelido}" size="30" disabled="#{membroMB.controlaCadastro==0}" />				
+			<h:outputLabel value="RG"/>
+			<p:inputText size="30" maxlength="12" value="#{membroMB.membro.rg}" disabled="#{membroMB.controlaCadastro==0}"/>					
+			<h:outputLabel value="CPF"/>
+			<p:inputMask size="30" maxlength="14" mask="999.999.999-99" value="#{membroMB.membro.cpf}" disabled="#{membroMB.controlaCadastro==0}" /> 
+			<h:outputLabel value="E-mail"/>
+			<p:inputText size="45" value="#{membroMB.membro.email}"  maxlength="85" disabled="#{membroMB.controlaCadastro==0}"/>
+		</p:panelGrid>
+
+		<p:panelGrid columns="6">
+			<h:outputLabel value="Sexo *"/>
+			<p:selectOneMenu id="sexo" value="#{membroMB.membro.sexo}" disabled="#{membroMB.controlaCadastro==0}">
+	            <f:selectItem itemLabel="Sexo" itemValue="" />
+	            <f:selectItem itemLabel="Masc." itemValue="M" />
+	            <f:selectItem itemLabel="Fem." itemValue="F" />
+	        </p:selectOneMenu>
+			<h:outputLabel value="Fone Residencial"/>
+			<p:inputText size="15" value="#{membroMB.membro.fone_res}" maxlength="13" disabled="#{membroMB.controlaCadastro==0}"/>
+			<h:outputLabel value="Fone Celular"/>
+			<p:inputText size="15" value="#{membroMB.membro.fone_cel}" maxlength="13" disabled="#{membroMB.controlaCadastro==0}"/>
+		</p:panelGrid>
+		<p:panelGrid columns="4">
+			<h:outputLabel value="Data de Nascimento *"/>
+			<p:inputMask value="#{membroMB.nascimento}" mask="99/99/9999" disabled="#{membroMB.controlaCadastro==0}"/>					
+			<h:outputLabel value="Data de Cadastro *"/>
+			<p:inputMask value="#{membroMB.datacadastro}" mask="99/99/9999" disabled="#{membroMB.controlaCadastro==0}"/>					     	
+     	</p:panelGrid>
+		<p:panelGrid columns="4">	
+		        <h:outputLabel value="Data de Batismo"/>
+				<p:inputMask value="#{membroMB.batismo}" mask="99/99/9999" disabled="#{membroMB.controlaCadastro==0}"/>										  
+				<h:outputLabel value="Selecionar a Célula *"/>
+				<p:panelGrid columns="2">
+					<p:inputText value="#{membroMB.celula.nome}" size="30"  disabled="#{true}" />				
+					<p:commandButton icon="ui-icon-search" actionListener="#{dialogMB.selecionarCelula}" disabled="#{membroMB.controlaCadastro==0}">
+						<p:ajax event="dialogReturn" listener="#{membroMB.celulaSelecionada}" update=":formCad" />
+					</p:commandButton>
+				</p:panelGrid>
+		</p:panelGrid>
+        <p:panelGrid columns="2">
+            <h:outputLabel value="Informe o CEP *" />
+			<p:panelGrid columns="2" style="padding:10px;">
+                <p:inputText value="#{membroMB.sCep}"  maxlength="8" size="9" disabled="#{membroMB.controlaCadastro==0}"/>
+                <p:commandButton  icon="ui-icon-search" actionListener="#{membroMB.buscaCep}" disabled="#{membroMB.controlaCadastro==0}"
+                	 onclick="PF('statusDialog').show()" oncomplete="PF('statusDialog').hide()" update=":formCad"/>
+			</p:panelGrid>
+		</p:panelGrid>
+		<p:panelGrid columns="4">						
+           	<h:outputLabel value="Rua/Av. *" />
+           	<p:inputText value="#{membroMB.rua}" size="40" disabled="#{membroMB.controlaCadastro==0}"/>
+           	<h:outputLabel value="Número" />					
+			<p:inputText value="#{membroMB.membro.numero}" size="8" disabled="#{membroMB.controlaCadastro==0}"/>
+            <h:outputLabel value="Complemento" />
+            <p:inputText value="#{membroMB.membro.complemento}"  size="30" disabled="#{membroMB.controlaCadastro==0}"/>			
+           	<h:outputLabel value="Bairro *" />
+			<p:inputText value="#{membroMB.bairro}" size="40" disabled="#{membroMB.controlaCadastro==0}"/>		           				
+           	<h:outputLabel value="Cidade *" />
+           	<p:inputText value="#{membroMB.cidade}" size="40" disabled="#{membroMB.controlaCadastro==0}"/>
+           	<h:outputLabel value="UF *" />
+			<p:inputText value="#{membroMB.uf}" size="4" maxlength="2" disabled="#{membroMB.controlaCadastro==0}"/>								
+		</p:panelGrid>			
+				
+		<p:panelGrid columns="2">	
+			<h:outputLabel value="Está ativo no sistema:"  rendered="#{membroMB.membro.idmembro!=null}"/>
+	        <p:selectOneMenu id="console" value="#{membroMB.membro.ativo}"  disabled="#{membroMB.controlaCadastro==0}"  rendered="#{membroMB.membro.idmembro!=null}">
+	             <f:selectItem itemLabel="Ativo" itemValue="true" />
+	              <f:selectItem itemLabel="Inativo" itemValue="false" />
+       		 </p:selectOneMenu>		
+		</p:panelGrid>
+		<f:facet name="footer">
+			<p:panelGrid columns="6">
+				<p:commandButton value="Novo" action="#{membroMB.novo}" update=":formCad" />
+				<p:commandButton value="Editar" action="#{membroMB.edita}" update=":formCad" disabled="#{membroMB.membro.idmembro==null}"/>
+				<p:commandButton value="Remover" action="#{membroMB.exclui}" disabled="#{membroMB.membro.idmembro==null}" update=":formCad"/>
+				<p:commandButton value="Limpar" action="#{membroMB.limpaCadastro}" update=":formCad" disabled="#{membroMB.membro.idmembro==null}"/>
+				<p:commandButton value="Gravar" action="${membroMB.grava}" update=":formCad,:formMsg" disabled="#{membroMB.controlaCadastro==0}"/>
+				<p:commandButton value="Imprimir" ajax="false" action="${membroMB.imprimirFichaMembro}" onclick="this.form.target='_blank'" update=":formMsg" disabled="#{membroMB.membro.idmembro==null}"/>
+			</p:panelGrid>						
+		</f:facet>
+		
+		
+	</p:panel>
+	<p:dialog widgetVar="statusDialog" modal="false" draggable="false" closable="false" resizable="false" showHeader="false">
+	    <p:graphicImage value="img/loading.gif" />
+	</p:dialog>
+</h:form>	
+
+    <h:form id="formdgfoto" style="text-align:left;" enctype="multipart/form-data">                      
+        <p:dialog id="dgfoto" widgetVar="dgfoto" header="Inserir Foto"> 
+	        <p:panelGrid columns="1">
+				<p:fileUpload fileUploadListener="#{membroMB.upload}" mode="advanced"
+				 		allowTypes="/(\.|\/)(gif|jpe?g|png|bmp)$/" 
+						cancelLabel="Cancelar"	uploadLabel="Enviar" label="Selecionar"
+						fileLimitMessage="Limitado a um arquivo."
+						fileLimit="1"	sizeLimit="15000"
+						invalidSizeMessage="Tamanho inválido! Máx.15kb."
+						invalidFileMessage="Tipo de arquivo inválido!"
+						update=":formCad" oncomplete="PF('dgfoto').hide()" />
+         
+	        </p:panelGrid>   
+        </p:dialog>
+        <p:growl id="messages" showDetail="true" />
+    </h:form>
+    <h:form id="formMsg" style="font-size:small;">                      
+        <p:growl id="msg" showDetail="true"  life="8000"/> 
+    </h:form> 
+    <h:form>
+		<p:remoteCommand action="#{membroMB.existemCelulaCadastrada}" autoRun="true" update=":formCad,:formMsg"/>
+	</h:form>
+</ui:define>
+</ui:composition>	
+</h:body>	
+
+</html>

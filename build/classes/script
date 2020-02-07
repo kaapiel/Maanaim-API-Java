@@ -1,0 +1,13 @@
+insert into usuario (usuario,senha) values ('admin','1811dc19b1db1521d014d1c21001361db1d813113e1d0155');
+insert into celula (nome,idsubregiao,descricao) values ('Celula1',1,'Celula');
+insert into celula (nome,idsubregiao,descricao) values ('Celula2',1,'Celula');
+insert into celula (nome,idsubregiao,descricao) values ('Celula3',4,'Celula');
+insert into celula (nome,idsubregiao,descricao) values ('Celula4',1,'Celula');
+
+
+
+INSERT INTO `membro` (`ativo`,`complemento`,`dataBatismo`,`datacadastro`,`nome`,`numero`,`sexo`,`idcelula`,`cep`)
+select ativo,complemento,dataBatismo,datacadastro,nome,numero,sexo,idcelula,cep from membro
+ 
+ 
+insert into reuniao (datareuniao,horareuniao,idcelula,cep) SELECT datareuniao,horareuniao,idcelula,cep FROM reuniao r

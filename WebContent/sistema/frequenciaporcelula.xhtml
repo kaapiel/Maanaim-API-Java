@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"  
+   		xmlns:f="http://java.sun.com/jsf/core"  
+    	xmlns:p="http://primefaces.org/ui"
+    	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</h:head>
+   	
+<h:body>
+<ui:composition template="content.xhtml">
+<ui:define name="conteudo">
+<h:form id="formRel">
+
+	<p:panel header="Relatório de Frequência por Célula">
+		<p:panelGrid columns="2">
+			<h:outputLabel value="Data Inicial" />
+			<h:outputLabel value="Data Final" />
+			<p:calendar value="#{relatorioMB.dataInicial}" pattern="dd/MM/yyyy" locale="pt"/>
+			<p:calendar value="#{relatorioMB.dataFinal}" pattern="dd/MM/yyyy" locale="pt" />
+		</p:panelGrid>
+		<f:facet name="footer">
+			<p:commandButton value="Gerar relatório" ajax="false" onclick="this.form.target='_blank'"	action="#{relatorioMB.frequenciaPorCelula}" />
+		</f:facet>
+	</p:panel>
+</h:form>
+
+
+<h:form id="formMsg" style="font-size:small;">                      
+    <p:growl id="msg" showDetail="true" life="5000"/> 
+</h:form>
+</ui:define>
+</ui:composition>		
+</h:body>	
+
+</html>

@@ -1,0 +1,92 @@
+body{margin:0px; height:100%; overflow-x:hidden; overflow-y:auto;border-radius:0px; }
+
+#logo {
+    text-align: left;
+    height: 70px;
+    vertical-align:middle;
+}
+
+#logo img {
+	height: 64px;
+}
+.ui-panel{
+	text-align: left;
+	top: 0px;
+}
+
+.ui-layout-north{
+    z-index:auto !important;
+    overflow:visible !important;  
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin: 0px;
+}
+
+.ui-layout-center{ 
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin: 0px;   
+}
+
+.ui-layout-north .ui-layout-unit-content {
+    overflow:visible !important;
+}
+
+.ui-widget{
+	font-size:100% !important;
+	padding-right: 
+}
+
+ 
+.norte .ui-layout-unit-header{
+
+}
+
+.norte .ui-layout-unit-content{
+   background: white;
+}
+
+.ui-widget-content{
+	 background: white;
+}
+
+.holer .ui-panelgrid tr, .ui-panelgrid td {
+	border: none !important; 	
+	font: 98% verdana;
+	top: 0px !important;
+	border-radius:0px !important;
+}
+.headerEmpresa{
+	border: none !important;
+	text-align: left;
+}
+.headerDireita{
+	text-align: right;
+}
+.ui-panelgrid tr, .ui-panelgrid td {
+	border: none !important;
+	top: 1% !important;
+ 	vertical-align: top !important;
+ 	border-radius:0px !important;
+}
+
+.ui-inputfield, .ui-widget-content .ui-inputfield {
+	border-radius:0px !important;
+}
+
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {
+	border-radius:0px !important;
+}
+
+.ui-widget-header {
+    border: 1px solid #D4CCB0;
+    border-radius:0px !important;
+    background: url('/celula/javax.faces.resource/images/ui-bg_gloss-wave_100_ece8da_500x100.png.jsf?ln=primefaces-south-street') repeat-x scroll 0% 0% #ECE8DA !important;
+    color: #433F38;
+    font-weight: bold;
+}
+	
+
+.ui-selectonemenu{
+	border-radius:0px !important;
+}

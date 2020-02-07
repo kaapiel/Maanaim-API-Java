@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"  
+   		xmlns:f="http://java.sun.com/jsf/core"  
+    	xmlns:p="http://primefaces.org/ui"
+    	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="css/content.css" type="text/css" media="screen" />
+</h:head>
+   	
+<h:body>
+	<p:panel>
+		<f:facet name="header"><h:outputLabel value="Selecione a Região" style="font-size:large;"/></f:facet>
+		<h:form >
+			<p:dataTable var="c" value="#{regiaoMB.regioes}" rows="5" paginator="true" paginatorPosition="bottom" 
+					paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink}">
+				<p:column headerText="ID" style="width:5%;">
+				 	<h:outputText value="#{c.idregiao}" />
+				</p:column>
+				<p:column headerText="Região" style="width:86%;" filterBy="#{c.cor}" filterMatchMode="contains">
+					<h:outputText value="#{c.cor}" />
+				</p:column>
+				<p:column style="width:8%;">
+					<p:commandButton icon="ui-icon-search" actionListener="#{regiaoMB.regiaoSelecionadoPeloDialog(c)}" />
+				</p:column>	
+			</p:dataTable>
+	 
+		</h:form>
+	</p:panel>	
+	
+</h:body>	
+
+</html>

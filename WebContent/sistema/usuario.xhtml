@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"  
+   		xmlns:f="http://java.sun.com/jsf/core"  
+    	xmlns:p="http://primefaces.org/ui"
+    	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+    	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+
+</h:head>
+   	
+<h:body>
+<ui:composition template="content.xhtml">
+<ui:define name="titulo">Cadastro de Usuários</ui:define>
+
+
+<ui:define name="conteudo">
+<p:layout >
+	<p:layoutUnit position="west" resizable="false" size="200" minSize="200" maxSize="200" style="border: none !important; " >
+		<h:form id="formtb">
+			<p:dataTable id="tb" value="#{usuarioMB.usuarios}" var="r" >
+				<f:facet name="header">Usuários Cadastradas</f:facet>
+		        <p:column style="text-align: center">
+		             <p:commandButton value="#{r.nome}" action="#{usuarioMB.usuarioSelecionado}" update=":formCad"  style="width:100%;">
+		                <f:setPropertyActionListener value="#{r}" target="#{usuarioMB.usuario}" />
+		            </p:commandButton>
+
+		        </p:column>
+			</p:dataTable>	
+		</h:form>		
+	</p:layoutUnit>
+	<p:layoutUnit position="center" style="border: none !important; ">
+<h:form id="formCad" style="width:98%;">
+	<p:panel styleClass="panel">
+		<f:facet name="header"><h:outputLabel value="Cadastro de Usuários" style="font-size:large;"/></f:facet>
+
+		<h:panelGrid columns="2">			  
+			<h:outputLabel  value="Nome Completo *"/>	
+			<p:inputText value="#{usuarioMB.usuario.nome}" size="23" maxlength="200" disabled="#{usuarioMB.controlaCadastro eq 0}" />					
+			<h:outputLabel value="Usuario *"/>
+			<p:inputText value="#{usuarioMB.usuario.usuario}" maxlength="20" disabled="#{usuarioMB.controlaCadastro eq 0}" />				
+			<h:outputLabel value="Vinculado ao Membro"/>
+			<p:panelGrid columns="2">
+				<p:inputText value="#{usuarioMB.nomeMembro}" size="25"  disabled="true"/>				
+				<p:commandButton icon="ui-icon-search" actionListener="#{dialogMB.selecionarMembro}" disabled="#{usuarioMB.controlaCadastro eq 0}">
+					<p:ajax event="dialogReturn" listener="#{usuarioMB.membroSelected}" update=":formCad" />
+				</p:commandButton>
+			</p:panelGrid>
+		</h:panelGrid>		
+		<f:facet name="footer">					
+			<p:commandButton value="Novo" action="#{usuarioMB.novo}" update=":formCad"/>
+			<p:commandButton value="Editar" update=":formCad" action="#{usuarioMB.edita}" disabled="#{usuarioMB.controlaCadastro ne 0 || usuarioMB.usuario.idusuario eq null}"/>
+			<p:commandButton value="Excluir" action="#{usuarioMB.exclui}" update=":formCad,:formtb,:formMsg" disabled="#{usuarioMB.controlaCadastro eq 0}"/>
+			<p:commandButton value="Cancelar" action="#{usuarioMB.limpaCadastro}" update=":formCad,:formtb" disabled="#{usuarioMB.controlaCadastro eq 0}"/>
+			<p:commandButton value="Gravar" action="#{usuarioMB.grava}" update=":formCad,:formMsg,:formtb" disabled="#{usuarioMB.controlaCadastro eq 0}"/>
+			<p:commandButton value="Reiniciar Senha" action="#{usuarioMB.redefineSenha}" update=":formSenha" oncomplete="PF('sen').show()" disabled="#{usuarioMB.controlaCadastro eq 0}"/>
+		
+		</f:facet>								
+	
+	</p:panel>
+
+</h:form>	
+	</p:layoutUnit>	
+</p:layout>
+
+<h:form id="formSenha">
+	<p:dialog id="sen" widgetVar="sen" header="Alterar senha">
+		<p:panelGrid columns="2">
+			<h:outputLabel value="Digite a senha *"/>
+			<p:password value="#{usuarioMB.senha1}"  disabled="#{usuarioMB.controlaCadastro eq 0}"/>				
+			<h:outputLabel value="Confirme a senha"/>
+			<p:password value="#{usuarioMB.senha2}"  disabled="#{usuarioMB.controlaCadastro eq 0}"/>		
+		</p:panelGrid>		
+		<f:facet name="footer">
+			<p:commandButton value="Atualizar" action="#{usuarioMB.gravaSenha}" oncomplete="PF('sen').hide()" 
+				update=":formCad,:formMsg,:formtb,:formSenha"/>
+		</f:facet>
+	</p:dialog>
+</h:form>
+
+    <h:form id="formMsg" style="font-size:small;">                      
+        <p:growl id="msg" showDetail="true"  life="5000"/> 
+    </h:form>
+</ui:define>
+</ui:composition>	
+</h:body>	
+
+</html>

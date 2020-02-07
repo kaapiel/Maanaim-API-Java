@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"  
+   		xmlns:f="http://java.sun.com/jsf/core"  
+    	xmlns:p="http://primefaces.org/ui"
+    	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+    	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+
+</h:head>
+   	
+<h:body>
+<ui:composition template="content.xhtml">
+<ui:define name="titulo">Cadastro de Célula</ui:define>
+
+
+<ui:define name="conteudo">
+<h:form id="formCad" style="width:98%;">
+<p:panel styleClass="panel" rendered="#{celulaMB.existemsubregioes}">
+	<f:facet name="header"><h:outputLabel value="Cadastro de Células" style="font-size:large;"/></f:facet>
+		<p:tabView >
+			<p:tab title="Identificação">
+				<p:panelGrid columns="2">			  
+					<h:outputLabel value="Nome da Célula *"/>
+					<p:panelGrid columns="2">
+						<p:inputText value="#{celulaMB.celula.nome}" size="30"  disabled="#{celulaMB.controlaCadastro == 0}" >
+							<p:ajax event="change" listener="#{celulaMB.listarMembros}"/>
+						</p:inputText>			
+						<p:commandButton icon="ui-icon-search" action="#{celulaMB.listar}" oncomplete="PF('sel').show();" update=":formCad,:formSel"/>
+					</p:panelGrid>
+				</p:panelGrid>			
+				<p:panelGrid columns="2">			  
+					<h:outputLabel  value="Descrição da Célula *"/>	
+					<p:inputTextarea value="#{celulaMB.celula.descricao}" style="width:500px;"  disabled="#{celulaMB.controlaCadastro == 0}" />						
+					<h:outputLabel value="Data de Cadastro *"/>
+					<p:inputMask value="#{celulaMB.datacadastro}" mask="99/99/9999" disabled="#{celulaMB.controlaCadastro==0}"/>					     	
+					<h:outputLabel value="SubRegião *" />
+					<p:panelGrid columns="2">						
+						<p:inputText id="srg" value="#{celulaMB.celula.subregiao.nome}" disabled="true" size="30"/>
+						<p:commandButton icon="ui-icon-search" actionListener="#{dialogMB.selecionarSubRegiao}" update=":formCad" disabled="#{celulaMB.controlaCadastro==0}">
+						 	<p:ajax event="dialogReturn" listener="#{celulaMB.subregiaoSelected}" update="srg" />
+						</p:commandButton>
+					</p:panelGrid>						
+					<h:outputLabel value="Célula de Origem"/>
+					<p:panelGrid columns="2">
+						<p:inputText id="ori" value="#{celulaMB.celulaorigem.nome}" size="30"  disabled="#{true}" />				
+						<p:commandButton icon="ui-icon-search" actionListener="#{dialogMB.selecionarCelula}" disabled="#{celulaMB.controlaCadastro == 0}">
+							<p:ajax event="dialogReturn" listener="#{celulaMB.celulaOrigemSelecionada}" update="ori" />
+						</p:commandButton>
+					</p:panelGrid>	
+					<h:outputLabel value="Está ativa no sistema:" rendered="false"/> 
+			        <p:selectOneMenu id="console" value="#{celulaMB.celula.ativo}" rendered="false"  disabled="#{celulaMB.controlaCadastro==0}">
+			             <f:selectItem itemLabel="Ativo" itemValue="true" />
+			              <f:selectItem itemLabel="Inativo" itemValue="false" />
+		       		 </p:selectOneMenu>
+					</p:panelGrid>
+						<p:panelGrid columns="1" rendered="#{celulaMB.celula.idcelula ne null}">
+							<h:outputLabel value="Adicionar Lider"/>
+							<p:panelGrid columns="2">	
+								<p:autoComplete id="mem" multiple="false" value="#{celulaMB.membro}" completeMethod="#{celulaMB.autocompletar}" disabled="#{celulaMB.controlaCadastro eq 0}"
+						                        var="m" itemLabel="#{m.nome}" itemValue="#{m}" converter="membroConverter" forceSelection="true" >
+						            <p:column style="width:10%">
+						                 <h:outputText value="#{m.nome}" />
+						            </p:column>
+						 
+						            <p:column>
+						                <h:outputText value="#{m.apelido}" />
+						            </p:column>
+						        </p:autoComplete>
+						        <p:commandButton action="#{celulaMB.adicionaResponsavel}" icon="ui-icon-check" disabled="#{celulaMB.controlaCadastro eq 0}" update="resp,:formMsg"/>
+			        </p:panelGrid>
+		           <p:dataList id="resp" value="#{celulaMB.celula.lideres}" var="s" type="ordered" emptyMessage="">
+				        <f:facet name="header">
+				            Lideres da Célula
+				        </f:facet>
+				        <p:commandLink action="#{celulaMB.removeResponsavel}" update=":formCad" title="Remover" 
+				        		disabled="#{celulaMB.controlaCadastro eq 0}" styleClass="ui-icon ui-icon-trash" style="float:left;margin-right:10px">
+				            <f:setPropertyActionListener value="#{s}" target="#{celulaMB.membro}" />
+				            <h:outputText value="#{s.nome}" />
+				        </p:commandLink>
+						<h:outputText value="#{s.nome}" style="display:inline-block"/>
+				        
+				    </p:dataList>
+				</p:panelGrid>					
+			</p:tab>
+		
+		</p:tabView>		
+	
+		<f:facet name="footer">	
+			<h:panelGrid columns="6">
+				<p:commandButton value="Novo" action="#{celulaMB.novo}" update=":formCad"/>
+				<p:commandButton value="Cancelar" update=":formCad" action="#{celulaMB.limpaCadastro}" />
+				<p:commandButton value="Excluir" action="#{celulaMB.exclui}" update=":formCad,:formMsg" disabled="#{celulaMB.controlaCadastro eq 0}"/>				
+				<p:commandButton value="Gravar" action="#{celulaMB.grava}" update=":formCad,:formMsg" disabled="#{celulaMB.controlaCadastro == 0}"/>
+			</h:panelGrid>						
+		</f:facet>	
+	</p:panel>
+</h:form>	
+
+<h:form id="formMsg" style="font-size:small;">                      
+  <p:growl id="msg" showDetail="true"  life="5000"/> 
+</h:form>
+<h:form id="formSel" style="font-size:small;width:300px;height:300px;">                      
+  <p:dialog id="sel" widgetVar="sel" modal="false" header="Seleção de Célula">
+		<p:dataTable id="tb" value="#{celulaMB.celulas}" var="r" rows="12" style="font-size:small;width:800px;height:500px;"
+	                         paginator="true" paginatorPosition="bottom"
+	                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+	
+			<p:column headerText="Célula" style="text-align: left">
+				<h:outputLabel value="#{r.nome}"/>
+			</p:column>
+			<p:column headerText="SubRegião" style="text-align: left">
+				<h:outputLabel value="#{r.subregiao.nome}"/>
+			</p:column>		
+			<p:column headerText="Região" style="text-align: left">
+				<h:outputLabel value="#{r.subregiao.regiao.cor}"/>
+			</p:column>				
+			<p:column headerText="Descricão" style="text-align: left">
+				<h:outputLabel value="#{r.descricao}"/>
+			</p:column>
+	        <p:column style="width:120px;text-align: center">
+	             <p:commandButton update=":formCad" action="#{celulaMB.edita}" icon="ui-icon-pencil" oncomplete="PF('sel').hide();">
+	                <f:setPropertyActionListener value="#{r}" target="#{celulaMB.celula}" />
+	            </p:commandButton>
+	        </p:column>
+		</p:dataTable>		  
+  </p:dialog> 
+</h:form>  
+<h:form>
+	<p:remoteCommand action="#{celulaMB.existemSubRegiaoCadastrada}" autoRun="true" update=":formCad,:formMsg"/>
+</h:form>    
+</ui:define>
+</ui:composition>	
+</h:body>	
+
+</html>

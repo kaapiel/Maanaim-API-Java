@@ -1,0 +1,17 @@
+
+
+button, input[type="submit"] {
+  padding: 0.5em;
+  background: #333333;
+  border: 1px solid gray;
+  cursor: pointer; 
+  
+   display: inline-block;
+  background: #333333;
+  color: white;
+  line-height: 1;
+  font-weight: bold;
+  padding: 1em;
+  border: 0;
+  text-align: center;
+  }

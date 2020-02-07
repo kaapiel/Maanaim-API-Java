@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 5.6.2.final using JasperReports Library version 5.6.1  -->
+<!-- 2014-11-17T19:14:30 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="frequenciaporcelula" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c3ea2e8f-af30-42d5-a6ed-55d1aa7987a8">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="logo" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="celula" class="java.lang.String"/>
+	<field name="totalmembros" class="java.math.BigInteger">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="totalmembrospresente" class="java.math.BigDecimal"/>
+	<field name="percentual" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="95" splitType="Stretch">
+			<staticText>
+				<reportElement x="120" y="0" width="434" height="60" uuid="f2440388-cc24-40e1-ba52-3864a19927ee"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="19"/>
+				</textElement>
+				<text><![CDATA[PERCENTUAL DE FREQUÊNCIA POR CÉLULA]]></text>
+			</staticText>
+			<image scaleImage="FillFrame">
+				<reportElement x="2" y="0" width="118" height="60" uuid="7df8049a-bb26-4287-bd07-357d856aacca"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="60" width="554" height="32" forecolor="#000000" backcolor="#FFA500" uuid="0c1a1f1e-e4d7-49a3-886a-6d2ce094efb7"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement x="307" y="12" width="247" height="20" forecolor="#FFFFFF" uuid="ae16e2be-c519-4940-a8f1-4f8c7453c91c"/>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<rectangle>
+				<reportElement x="2" y="0" width="552" height="20" forecolor="#C0E6FA" backcolor="#C0E6FA" uuid="6b170b15-6595-4363-a893-e41d4b9491a9"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="10" y="0" width="100" height="20" uuid="a0540f0d-0edc-4dcb-a31d-69893060e5ec"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Célula]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="129" y="0" width="121" height="20" uuid="6001fab7-ba5d-434d-969f-542eeadcef52"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total de Membros]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="255" y="0" width="100" height="20" uuid="2cdaf29a-60a6-46ac-a028-c28cc57beaac"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Presente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="0" width="100" height="20" uuid="019bab9a-7986-4048-ab21-54cde13b87a9"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[% Frequência]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="10" y="0" width="100" height="20" uuid="55b496cc-6817-49d0-841a-861ac283eec2"/>
+				<textFieldExpression><![CDATA[$F{celula}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="129" y="0" width="121" height="20" uuid="6d5d5f05-ae4e-4956-a430-2bb099a82005"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{totalmembros}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="255" y="0" width="100" height="20" uuid="ed023e10-b27e-4fff-a5af-f93a944c081b"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{totalmembrospresente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="0" width="100" height="20" uuid="62a14a5a-504a-4b2a-b870-88c96cbdeb39"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{percentual}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

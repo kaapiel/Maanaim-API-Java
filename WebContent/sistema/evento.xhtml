@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"  
+   		xmlns:f="http://java.sun.com/jsf/core"  
+    	xmlns:p="http://primefaces.org/ui"
+    	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+
+</h:head>
+   	
+<h:body>
+<ui:composition template="content.xhtml">
+<ui:define name="titulo">Cadastro de Eventos</ui:define>
+
+
+<ui:define name="conteudo">
+<h:form id="formCad" style="width:88%;" >
+	<p:panel styleClass="panel" >
+	<f:facet name="header"><h:outputLabel value="Cadastro de Avisos/eventos" style="font-size:large;"/></f:facet>
+
+		<div style="float: right;">
+			<img src="#{request.contextPath}/resources/tmp/#{avisosMB.foto}"  height="180" width="180"/>		
+			<br></br>
+			<center><p:commandButton value="Foto" oncomplete="PF('dgfoto').show()" disabled="#{avisosMB.controlaCadastro==0}"/></center>
+		</div>
+		<p:panelGrid columns="2">			  
+			<h:outputLabel value="Título do evento *"/>
+			<p:panelGrid columns="2">
+				<p:inputText value="#{avisosMB.aviso.titulo}" size="75"  disabled="#{avisosMB.controlaCadastro==0}"/>				
+				<p:commandButton icon="ui-icon-search" actionListener="#{dialogMB.selecionarAviso}">
+					<p:ajax event="dialogReturn" listener="#{avisosMB.avisoSelecionado}" update=":formCad" />
+				</p:commandButton>
+			</p:panelGrid>
+		</p:panelGrid>
+		
+		<p:panelGrid columns="2">
+			<h:outputLabel value="Data do Evento *"/>
+			<p:inputMask value="#{avisosMB.dataEvento}" mask="99/99/9999" disabled="#{avisosMB.controlaCadastro==0}"/>					
+		</p:panelGrid>
+	
+	    <f:facet name="footer">
+			<p:panelGrid columns="6">
+				<p:commandButton value="Novo" action="#{avisosMB.novo}" update=":formCad" />
+				<p:commandButton value="Editar" action="#{avisosMB.edita}" update=":formCad" disabled="#{avisosMB.aviso.idaviso==null}"/>
+				<p:commandButton value="Remover" action="#{avisosMB.exclui}" disabled="#{avisosMB.aviso.idaviso==null}" update=":formCad"/>
+				<p:commandButton value="Limpar" action="#{avisosMB.limpaCadastro}" update=":formCad" disabled="#{avisosMB.aviso.idaviso==null}"/>
+				<p:commandButton value="Gravar" action="${avisosMB.grava}" update=":formCad,:formMsg" disabled="#{avisosMB.controlaCadastro==0}"/>
+			</p:panelGrid>						
+		</f:facet>
+		</p:panel>
+		
+	
+	<p:dialog widgetVar="statusDialog" modal="false" draggable="false" closable="false" resizable="false" showHeader="false">
+	    <p:graphicImage value="img/loading.gif" />
+	</p:dialog>
+</h:form>	
+
+    <h:form id="formdgfoto" style="text-align:left;" enctype="multipart/form-data">                      
+        <p:dialog id="dgfoto" widgetVar="dgfoto" header="Inserir Foto"> 
+	        <p:panelGrid columns="1">
+				<p:fileUpload fileUploadListener="#{avisosMB.upload}" mode="advanced"
+				 		allowTypes="/(\.|\/)(gif|jpe?g|png|bmp)$/" 
+						cancelLabel="Cancelar"	uploadLabel="Enviar" label="Selecionar"
+						fileLimitMessage="Limitado a um arquivo."
+						fileLimit="1"	sizeLimit="15000"
+						invalidSizeMessage="Tamanho inválido! Máx.15kb."
+						invalidFileMessage="Tipo de arquivo inválido!"
+						update=":formCad" oncomplete="PF('dgfoto').hide()" />
+         
+	        </p:panelGrid>   
+        </p:dialog>
+        <p:growl id="messages" showDetail="true" />
+    </h:form>
+    <h:form id="formMsg" style="font-size:small;">                      
+        <p:growl id="msg" showDetail="true"  life="8000"/> 
+    </h:form> 
+    
+</ui:define>
+</ui:composition>	
+</h:body>	
+
+</html>

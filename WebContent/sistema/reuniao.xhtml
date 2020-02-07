@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"  
+   		xmlns:f="http://java.sun.com/jsf/core"  
+    	xmlns:p="http://primefaces.org/ui"
+    	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+   	
+<h:body>
+<ui:composition template="content.xhtml">
+<ui:define name="titulo">Controle da Célula</ui:define>
+
+<ui:define name="conteudo">
+<h:form id="formCad" style="width:98%;" >
+	<p:panel styleClass="panel">
+		<f:facet name="header"><h:outputLabel value="Controle da Reunião" style="font-size:large;"/></f:facet>
+		<p:panelGrid columns="2">
+			<p:column>
+				<p:panelGrid columns="3">
+					<h:outputLabel value="Célula"/>
+					<p:inputText id="cel" value="#{reuniaoMB.celula.nome}" size="30"  disabled="#{true}"/>			
+					<p:commandButton icon="ui-icon-search" actionListener="#{dialogMB.selecionarCelula}" >
+						<p:ajax event="dialogReturn" listener="#{reuniaoMB.celulaSelecionada}" update="cel,reus,pkm,oft,grv"/>
+					</p:commandButton>
+				</p:panelGrid>		
+				<p:panelGrid columns="2"> 
+					<p:outputLabel  value="Estado da Reunião:" />
+			        <p:selectOneMenu id="menu" value="#{reuniaoMB.statusselecionado}" 
+			        	label="Estados da Reunião" panelStyle="width:250px" converter="statusReuniaoConverter" >
+			            <f:selectItems  var="s" value="#{reuniaoMB.status}" itemLabel="#{s.estado}" itemValue="#{s}" />
+						<p:ajax event="change" listener="#{reuniaoMB.statusDaReuniaoSelecionado}" update="reus,pkm,oft,grv"/>
+			        </p:selectOneMenu>		        
+				</p:panelGrid>
+				<p:panelGrid columns="2">
+					<p:outputLabel  value="Reunião da Célula:" />
+		        	<p:selectOneMenu id="reus" value="#{reuniaoMB.reuniao}" effect="fold" converter="reuniaoConverter" >
+		         		   <f:selectItems value="#{reuniaoMB.reunioesDaCelula}" var="r" itemLabel="#{reuniaoMB.dataFormatada(r.datareuniao)} - #{reuniaoMB.horaFormatada(r.horareuniao)}" itemValue="#{r}"/>
+			        	   <p:ajax event="change" listener="#{reuniaoMB.carregaMembrosDaCelula}" update="reus,pkm,oft,grv,edt"/>
+			        </p:selectOneMenu>		       	
+				</p:panelGrid>
+				
+				<p:commandButton id="edt" value="Editar Reunião da Célula" action="#{reuniaoMB.editarReuniao}" update="menu,pkm,oft:oferta,grv" />
+				
+			    <p:pickList id="pkm" value="#{reuniaoMB.dualMembros}" var="t" disabled="#{reuniaoMB.naoPermiteEditarReuniao}" 
+			    	itemLabel="#{t.nome}" itemValue="#{t}" converter="membroConverter" style="font-size:x-small !important;">
+			    	 <f:facet name="sourceCaption">Membros Ativos</f:facet>
+					 <f:facet name="targetCaption">Participantes da Célula</f:facet>			
+					 <p:ajax event="transfer" listener="#{reuniaoMB.onTransfer}" update=":formCad:oft" />	    	
+	         	</p:pickList>			
+			</p:column>
+			<p:column>
+				<center>
+					<p:dataTable id="oft" value="#{reuniaoMB.participantes}" var="rm" emptyMessage="" editable="true" 
+							  editMode="cell" widgetVar="cellOft" style="margin-bottom:20px;font-size:xx-small;width:70%;"
+							  rows="10" paginator="true">
+						<p:ajax event="cellEdit" listener="#{reuniaoMB.onCellEdit}" />						
+						<f:facet name="header">Presentes na Célula</f:facet>
+						
+						<p:column headerText="Membro">
+							<h:outputLabel value="#{rm.membro.nome}"/>
+						</p:column>
+				       <p:column headerText="Oferta" style="text-align:right;width:110px;">
+				           <p:cellEditor>
+				               <f:facet name="output"><h:outputText value="#{rm.oferta}" /></f:facet>
+				               <f:facet name="input"><p:inputText id="oferta" value="#{rm.oferta}" style="width:96%" label="Oferta" disabled="#{reuniaoMB.naoPermiteEditarReuniao}"/></f:facet>
+				           </p:cellEditor>
+				       </p:column>				
+					</p:dataTable>
+				</center>			
+			</p:column>
+			</p:panelGrid>
+
+	<br></br>
+<br></br>
+			<p:panelGrid columns="2">
+				<p:commandButton id="grv" value="Gravar" action="${reuniaoMB.grava}" update=":formCad,:formMsg" disabled="#{reuniaoMB.naoPermiteEditarReuniao}" />
+				<p:commandButton value="Limpar" action="#{reuniaoMB.limpaCadastro}" update=":formCad" />
+			</p:panelGrid>				
+			
+	</p:panel>
+</h:form>
+ <h:form id="formMsg" style="font-size:small;">                      
+     <p:growl id="msg" showDetail="true" life="5000"/> 
+ </h:form>
+</ui:define>
+</ui:composition>	
+</h:body>	
+
+</html>

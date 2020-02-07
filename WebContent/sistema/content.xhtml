@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+<title>Controle de Células Maanaim</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="js/padraoPtBr.js"></script>
+<link rel="stylesheet" href="css/menu.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="css/content.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="css/primefaces.css" type="text/css" media="screen" />
+<script src="js/menu.js"></script>
+<script type="text/javascript">
+   quit(); 
+</script>
+
+<script>  
+            PrimeFaces.locales['pt'] = {  
+                closeText: 'Fechar',  
+                prevText: 'Anterior',  
+                nextText: 'Próximo',  
+                currentText: 'Começo',  
+                monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],  
+                monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],  
+                dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],  
+                dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],  
+                dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],  
+                weekHeader: 'Semana',  
+                firstDay: 0,  
+                isRTL: false,  
+                showMonthAfterYear: false,  
+                yearSuffix: '',  
+                timeOnlyTitle: 'Só Horas',  
+                timeText: 'Tempo',  
+                hourText: 'Hora',  
+                minuteText: 'Minuto',  
+                secondText: 'Segundo',  
+                ampm: false,  
+                month: 'Mês',  
+                week: 'Semana',  
+                day: 'Dia',  
+                allDayText: 'Todo o Dia'  
+            };  
+        </script>
+</h:head>      
+
+<h:body>
+<div id="tudo"> 
+
+<p:layout fullPage="true" style="top: 0px !important;" >
+
+	<p:layoutUnit position="north" size="70" closable="false" styleClass="norte" style="border:0 !important;" >
+
+		<center>
+		<h:form style="font-size:100%;font:Trebuchet MS;font-weight: bold;width:100%;text-align: center;">		
+			<div id='cssmenu'>
+				<ul>
+				   <li><a href='index.jsf'><span>Home</span></a></li>
+				   <li class='active has-sub'><a href='#'><span>Cadastros</span></a>
+				      <ul>
+				      	 <li><a href='usuario.jsf'><span>Usuários</span></a></li>
+				      	 <li><a href='evento.jsf'><span>Eventos</span></a></li>
+				         <li><a href='regiao.jsf'><span>Região</span></a></li>
+				         <li><a href='subregiao.jsf'><span>Sub-Região</span></a></li>
+				         <li><a href='celula.jsf'><span>Célula</span></a></li>
+				         <li><a href='membro.jsf'><span>Membro</span></a></li>
+				       </ul>
+				   </li>
+				   <li class='active has-sub'><a href='#'><span>Controles</span></a>
+				      <ul>
+				         <li><a href='agendarreuniao.jsf'><span>Agendar Reunião</span></a></li>	
+				         <li><a href='reuniao.jsf'><span>Reunião</span></a></li>						
+				       </ul>
+				   </li>
+				   <li class='active has-sub'><a href='#'><span>Relatórios</span></a>
+				   		<ul>
+			         		<li><a href='aniversariantes.jsf'><span>Aniversáriantes</span></a></li>								
+							<li><a href='frequenciaporcelula.jsf'><span>Frequência por Célula</span></a></li>
+							<li><a href='informacadascelulas.jsf'><span>Informações por Célula</span></a></li>
+							<li><a href='ofertaporbairro.jsf'><span>Oferta X Bairro</span></a></li>
+							<li><a href='selecaodemembros.jsf'><span>Seleção para Evento</span></a></li>
+						</ul>
+				   </li>
+				   <li class='active has-sub'><a href='#'><span>Ajuda</span></a>
+				      <ul>
+			         	<li><a href='manual.jsf'><span>Manual do Usuário</span></a></li>					         
+				         <li><a href='#' onclick="PF('dgSobre').show()"><span>Sobre</span></a></li>
+				      </ul>				   
+				   </li>
+				   <li><a href='#' onclick="quit()"><span>Sair</span></a></li>
+				</ul>
+			</div>
+			<p:remoteCommand name="help" actionListener="#{acessoMB.logout}" />
+			<p:remoteCommand name="quit" actionListener="#{acessoMB.logout}" />
+		</h:form>     		
+		</center>
+	</p:layoutUnit>
+
+	<p:layoutUnit position="center" style="border:0 !important;" >
+		<ui:insert name="headerPagina"/>
+		<center><ui:insert name="conteudo"/></center> 
+
+	</p:layoutUnit>
+
+</p:layout>
+
+</div>  
+<h:form id="sist" style="">
+<p:dialog id="dgSobre" widgetVar="dgSobre" header="Sobre Sistema" position="center center">
+	<p:panelGrid columns="2">
+		<p:graphicImage value="../img/logo.jpg" width="131" height="73"/>
+		<p:panelGrid columns="1">
+			<p:outputLabel value="CONTROLE DE CÉLULAS DA IGREJA MAANAIM" style="font-size: 140%;font-style: italic;font-weight: bold;"/>
+			<p:outputLabel value="Sistema Desenvolvido por:" style="font-size: 110%;font-weight: bold;"/>
+			<p:outputLabel value="UNIFIEO TADS - GRUPO TCC - TURMA 2014 "/>
+			<p:outputLabel value="Versão: 3.092014(01)"/>
+		</p:panelGrid>
+		
+	</p:panelGrid>
+</p:dialog>
+</h:form>         
+</h:body>      
+</html>

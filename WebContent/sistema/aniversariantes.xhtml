@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"  
+   		xmlns:f="http://java.sun.com/jsf/core"  
+    	xmlns:p="http://primefaces.org/ui"
+    	xmlns:ui="http://java.sun.com/jsf/facelets"
+    	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:head>
+
+</h:head>
+   	
+<h:body>
+<ui:composition template="content.xhtml">
+<ui:define name="titulo">Aniversariantes do Mês</ui:define>
+
+
+<ui:define name="conteudo">
+<h:form id="formCad" style="width:98%;" >
+	<p:panel styleClass="panel">
+	<f:facet name="header"><h:outputLabel value="Aniversariantes do Mês" style="font-size:large;"/></f:facet>
+		<p:panelGrid columns="3">
+			<h:outputText value="Digite o mês"/>
+			<pe:inputNumber value="#{niverMB.mes}" maxlength="2" minValue="1" maxValue="12"/>
+			<p:commandButton value="Mostrar" action="#{niverMB.listar}" update="tb,:formMsg"/>
+		</p:panelGrid>
+		
+        <h:commandLink>
+            <p:graphicImage value="img/excel.png" width="24"/>
+            <pe:exporter type="xlsx" target="tb" fileName="aniversariantes" 
+            		facetBackground="#31DCFE" facetFontSize="10" facetFontColor="#0000ff" facetFontStyle="BOLD"  fontName="Courier New"  
+                  cellFontColor="#000000" cellFontSize="8" cellFontStyle="NORMAL"/>  
+        </h:commandLink>
+
+        <h:commandLink>
+            <p:graphicImage value="img/pdf.png" width="24"/>
+            <pe:exporter type="pdf" target="tb" fileName="aniversariantes" facetBackground="#31DCFE" facetFontSize="7" facetFontColor="#0000ff" facetFontStyle="BOLD"  fontName="Courier New"  
+                  cellFontColor="#000000" cellFontSize="8" cellFontStyle="NORMAL"/>
+        </h:commandLink>
+
+		
+		<p:dataTable id="tb" var="m" value="#{niverMB.membros}" style="width:50%;" >
+			<f:facet name="header">Aniversariantes do m&ecirc;s <h:outputText value=" #{niverMB.mes}"/></f:facet>
+            <p:column headerText="Dia" style="text-align: center;width:40px;">  
+               	<h:outputText value="#{m.nascimento}">
+					<f:convertDateTime pattern="dd" locale="pt_BR"/>
+				</h:outputText>
+            </p:column>	
+			<p:column headerText="Nome" style="text-align: left;">
+				<h:outputText value="#{m.nome}"/>
+			</p:column>
+			<p:column headerText="Celula" style="text-align: left;">
+				<h:outputText value="#{m.celula.nome}"/>
+			</p:column>	
+  			
+		</p:dataTable>
+	</p:panel>
+</h:form>	
+    <h:form id="formMsg" style="font-size:small;">                      
+        <p:growl id="msg" showDetail="true" life="6000"/> 
+    </h:form>
+</ui:define>
+</ui:composition>	
+</h:body>	
+</html>

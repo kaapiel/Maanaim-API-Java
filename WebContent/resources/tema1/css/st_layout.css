@@ -1,0 +1,12 @@
+.ui-layout-north{
+    z-index:auto !important;
+    overflow:visible !important;  
+    padding:0px;
+    
+}
+
+
+.ui-layout-north .ui-layout-unit-content {
+    overflow:visible !important; 
+    background: white;   
+}

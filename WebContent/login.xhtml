@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"  
+   		xmlns:f="http://java.sun.com/jsf/core"  
+    	xmlns:p="http://primefaces.org/ui"
+    	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
+<title>Controle de Células - Acesso</title>
+<link rel="stylesheet" href="login.css" type="text/css" media="screen" />
+</h:head>	
+<h:body>	
+<p:graphicImage value="img1.jpg" />
+<center>
+<h:form id="formLogin" >		 
+<p:panel style="width:25%;font-size:small;">
+		<f:facet name="header">Acesso ao sistema</f:facet>				
+	<p:panelGrid columns="2" >
+			<h:outputLabel value="Usuário" style="font-family: Georgia, Times New Roman;"/>	
+			<p:inputText  value="#{acessoMB.usuario}" placeholder="usuário"/>
+			<h:outputLabel value="Senha" style="font-family: Georgia, Times New Roman;"/>	
+			<p:password value="#{acessoMB.senha}" placeholder="senha"/>		
+			<h:outputLabel></h:outputLabel>
+			<p:commandButton action="#{acessoMB.entrar}"  update=":formMsg,:formLogin"
+				value="Entrar" icon="ui-icon-check" style="margin:0;"/>	
+	</p:panelGrid>
+</p:panel>
+</h:form>
+</center>
+<h:form id="formMsg" style="font-size:small;">                      
+   <p:growl id="msg" showDetail="true" sticky="false" life="3000"/>
+</h:form> 
+</h:body>
+</html>
