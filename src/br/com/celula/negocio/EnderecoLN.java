@@ -41,7 +41,7 @@ public class EnderecoLN implements Serializable{
 	public String adiciona(Endereco e, EntityManager em){
 		dao = new GenericDao<Endereco>(em);
 		dao.adiciona(e); 
-		msg="Endereço Adicionado com sucesso.";
+		msg="Endereco Adicionado com sucesso.";
 		return msg;
 	}
 	

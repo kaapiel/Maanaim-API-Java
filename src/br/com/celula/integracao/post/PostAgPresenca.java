@@ -48,7 +48,6 @@ public class PostAgPresenca {
 		}
 
 		grava();
-		// retorna uma resposta HTTP 200 em caso de sucesso
 		return Response.status(200).entity(dadosRecebidos).build();
 	}
 
@@ -63,6 +62,6 @@ public class PostAgPresenca {
 		manager.close();
 		factory.close();
 
-		System.out.println("************************  FIM RECEBIMENTO DA PRESENÇA DE REUNIAO  *************************");	    
+		System.out.println("************************  FIM RECEBIMENTO DA PRESENCA DE REUNIAO  *************************");	    
 	}
 }
