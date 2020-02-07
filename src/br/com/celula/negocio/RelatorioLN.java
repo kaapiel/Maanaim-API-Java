@@ -83,7 +83,7 @@ public class RelatorioLN implements Serializable{
 	}
 
 	@SuppressWarnings("unchecked")
-	public void geraFichaMembro(Membro m) throws IOException, JRException{
+	public void geraFichaMembro(Membro m) throws IOException, JRException {
 
 		String nomeRelatorio = "fichademembro.jasper";	
 		List<Membro> ms = new ArrayList<Membro>();
