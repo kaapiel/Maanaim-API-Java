@@ -1,4 +1,5 @@
-![banner](https://raw.github.com/kaapiel/Raw-content/master/Automation-Python/app.png)
+# Maanaim API Java
+A powerful & easy to use API for maanaim apps
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=kaapiel_Maanaim-app-server&metric=alert_status)](https://sonarcloud.io/dashboard?id=kaapiel_Maanaim-app-server)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=kaapiel_Maanaim-app-server&metric=ncloc)](https://sonarcloud.io/dashboard?id=kaapiel_Maanaim-app-server)
@@ -7,9 +8,6 @@
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=kaapiel_Maanaim-app-server&metric=security_rating)](https://sonarcloud.io/dashboard?id=kaapiel_Maanaim-app-server)
 ![CircleCI](https://img.shields.io/circleci/build/github/kaapiel/Maanaim-API-Java/master)
 [![API](https://img.shields.io/badge/API-26%2B-green.svg?style=flat)](https://android-arsenal.com/api?level=26)
-
-# Maanaim API Java
-A powerful & easy to use API for maanaim apps
 
 ## Table of Contents
 1. [Quick Start](#quick-start)
@@ -24,14 +22,9 @@ Deploy this app on heroku to access its content!
 
 <br/>
 
-<h2 id="examples">Examples :eyes:</h2>
-
-![banner](https://raw.github.com/kaapiel/Raw-content/master/Automation-Python/app.png)
-![banner](https://raw.github.com/kaapiel/Raw-content/master/Automation-Python/app.png)
-![banner](https://raw.github.com/kaapiel/Raw-content/master/Automation-Python/app.png)
-![banner](https://raw.github.com/kaapiel/Raw-content/master/Automation-Python/app.png)
-
-<br/>
+### How to use it
+1. Deploy the app using tomcat
+1. Access its resources through http wherever you are
 
 <h2 id="report">Questions & Issues :thinking:</h2>
 
