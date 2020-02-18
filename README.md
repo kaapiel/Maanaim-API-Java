@@ -1,6 +1,12 @@
 # Maanaim API Java
 A powerful & easy to use API for maanaim apps
 
+### To access SonarCloud data use this link: 
+#### https://sonarcloud.io/dashboard?id=kaapiel_Maanaim-app-server
+
+### To access pipeline and CI data use this link: 
+#### https://circleci.com/gh/kaapiel/Maanaim-API-Java
+
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=kaapiel_Maanaim-app-server&metric=alert_status)](https://sonarcloud.io/dashboard?id=kaapiel_Maanaim-app-server)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=kaapiel_Maanaim-app-server&metric=ncloc)](https://sonarcloud.io/dashboard?id=kaapiel_Maanaim-app-server)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=kaapiel_Maanaim-app-server&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=kaapiel_Maanaim-app-server)
